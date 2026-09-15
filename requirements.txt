@@ -1,0 +1,10 @@
+# Reproducible Windows CPU environment; no CUDA or cloud-inference dependency.
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch==2.11.0+cpu
+transformers==5.17.0
+trl==1.13.0
+peft==0.20.0
+datasets==4.8.5
+tokenizers==0.23.2
+safetensors==0.8.0
+accelerate==1.13.0
