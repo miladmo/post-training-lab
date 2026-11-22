@@ -145,23 +145,85 @@ def score_completion(text, expected):
     return metrics
 
 
+def _completion_text(completion):
+    """Return generated text from a string or a single assistant message."""
+    if isinstance(completion, str):
+        return completion
+    if (isinstance(completion, list) and len(completion) == 1
+            and isinstance(completion[0], dict) and completion[0].get("role") == "assistant"):
+        return completion[0].get("content")
+    return None
+
+
 def reward(completions, expected, **kwargs):
     """TRL-compatible bounded reward: mean of four exact, rule-based checks."""
     if len(completions) != len(expected):
         raise ValueError("Completions and expected outputs must have equal lengths.")
     rewards = []
     for completion, target in zip(completions, expected):
-        if isinstance(completion, str):
-            text = completion
-        elif (isinstance(completion, list) and len(completion) == 1
-              and isinstance(completion[0], dict) and completion[0].get("role") == "assistant"):
-            text = completion[0].get("content")
-        else:
-            text = None
-        metrics = score_completion(text, target)
+        metrics = score_completion(_completion_text(completion), target)
         rewards.append(sum(metrics[key] for key in (
             "schema_valid", "decision_correct", "missing_fields_exact", "evidence_exact")) / 4)
     return rewards
+
+
+REWARD_COMPONENTS = ("format", "decision", "missing_f1", "evidence_f1")
+
+
+def _set_f1(predicted, expected):
+    """F1 of two sets; two empty sets agree perfectly."""
+    predicted, expected = set(predicted), set(expected)
+    if not predicted and not expected:
+        return 1.0
+    overlap = len(predicted & expected)
+    if overlap == 0:
+        return 0.0
+    precision, recall = overlap / len(predicted), overlap / len(expected)
+    return 2 * precision * recall / (precision + recall)
+
+
+def graded_components(text, expected):
+    """Verifiable reward components with partial credit for set-valued fields.
+
+    A completion that is not exactly one valid decision object earns zero on
+    every component, so partial credit never rewards malformed output. The
+    evaluation metrics in ``score_completion`` stay exact; this function only
+    shapes the training signal.
+    """
+    if not _valid_prediction(expected):
+        raise ValueError("Invalid expected output schema.")
+    zero = dict.fromkeys(REWARD_COMPONENTS, 0.0)
+    try:
+        prediction = _loads(text) if isinstance(text, str) else None
+    except (TypeError, ValueError):
+        return zero
+    if not _valid_prediction(prediction):
+        return zero
+    return {"format": 1.0,
+            "decision": float(prediction["decision"] == expected["decision"]),
+            "missing_f1": _set_f1(prediction["missing"], expected["missing"]),
+            "evidence_f1": _set_f1(prediction["evidence_ids"], expected["evidence_ids"])}
+
+
+def _component_reward(name):
+    def component(completions, expected, **kwargs):
+        if len(completions) != len(expected):
+            raise ValueError("Completions and expected outputs must have equal lengths.")
+        return [graded_components(_completion_text(completion), target)[name]
+                for completion, target in zip(completions, expected)]
+    component.__name__ = f"reward_{name}"
+    component.__doc__ = f"TRL reward function for the graded component '{name}'."
+    return component
+
+
+# One reward function per component so TRL logs each mean separately.
+GRADED_REWARDS = tuple(_component_reward(name) for name in REWARD_COMPONENTS)
+
+
+def graded_reward(completions, expected, **kwargs):
+    """Equal-weight mean of the four graded components, bounded in [0, 1]."""
+    parts = [function(completions, expected) for function in GRADED_REWARDS]
+    return [sum(values) / len(values) for values in zip(*parts)]
 
 
 def build_dataset():
