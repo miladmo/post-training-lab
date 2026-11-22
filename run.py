@@ -32,9 +32,11 @@ def select_rows(rows, limit):
     return ordered[:limit] if limit else ordered
 
 
-def setup(args):
+def setup(args, head="causal"):
+    """Load tokenizer and model; ``head="reward"`` adds a scalar sequence-classification head."""
     import torch
-    from transformers import AutoModelForCausalLM, AutoTokenizer, set_seed
+    from transformers import (AutoModelForCausalLM, AutoModelForSequenceClassification,
+                              AutoTokenizer, set_seed)
 
     torch.set_num_threads(args.threads)
     set_seed(args.seed)
@@ -63,8 +65,13 @@ def setup(args):
     tokenizer = AutoTokenizer.from_pretrained(source, **kwargs)
     if tokenizer.pad_token_id is None:
         tokenizer.pad_token = tokenizer.eos_token
-    model = AutoModelForCausalLM.from_pretrained(
-        source, dtype=torch.float32, attn_implementation="eager", **kwargs)
+    if head == "reward":
+        model = AutoModelForSequenceClassification.from_pretrained(
+            source, num_labels=1, dtype=torch.float32, attn_implementation="eager", **kwargs)
+        model.config.pad_token_id = tokenizer.pad_token_id
+    else:
+        model = AutoModelForCausalLM.from_pretrained(
+            source, dtype=torch.float32, attn_implementation="eager", **kwargs)
     if args.device == "cuda":
         if not torch.cuda.is_available():
             raise ValueError("CUDA requested but unavailable.")
@@ -87,7 +94,8 @@ def common_metadata(args):
         "model_files_sha256": args.model_files_sha256,
         "prompt": prompt_manifest(args.prompt_style),
         "source_sha256": {name: hashlib.sha256(Path(__file__).with_name(name).read_bytes()).hexdigest()
-                          for name in ("run.py", "tasks.py", "prompts.py", "summaries.py")},
+                          for name in ("run.py", "tasks.py", "prompts.py", "summaries.py",
+                                       "reward_model.py")},
         "versions": {name: importlib.metadata.version(name)
                      for name in ("torch", "transformers", "trl", "peft", "datasets",
                                   "accelerate", "tokenizers", "safetensors")},
@@ -433,16 +441,9 @@ def build_parser():
     comparison.add_argument("directories", nargs="+", type=Path)
     for name in ("train", "evaluate"):
         command = commands.add_parser(name)
-        command.add_argument("--model", default="Qwen/Qwen3-0.6B")
-        command.add_argument("--revision", default="c1899de289a04d12100db370d81485cdf75e47ca")
-        command.add_argument("--snapshot", help="Local snapshot of the specified model and revision")
-        command.add_argument("--device", choices=("cpu", "cuda"), default="cpu")
-        command.add_argument("--threads", type=positive, default=4)
-        command.add_argument("--seed", type=int, default=42)
-        command.add_argument("--prompt-style", choices=("original", "two-shot"), default="original")
-        command.add_argument("--output", required=True)
+        add_model_arguments(command)
         if name == "train":
-            command.add_argument("--method", choices=("sft", "dpo", "grpo"), default="sft")
+            command.add_argument("--method", choices=("sft", "dpo", "grpo", "reward"), default="sft")
             command.add_argument("--steps", type=positive, default=4)
             command.add_argument("--max-length", type=positive, default=512)
             command.add_argument("--learning-rate", type=learning_rate, default=2e-4)
@@ -462,7 +463,30 @@ def build_parser():
             command.add_argument("--split", choices=("validation", "test"), default="validation")
             command.add_argument("--limit", type=positive)
             command.add_argument("--max-new-tokens", type=positive, default=96)
+    reward_eval = commands.add_parser("reward-eval", help="Pairwise accuracy and robustness of a reward model")
+    best_of_n = commands.add_parser("best-of-n", help="Sample N completions and select with a reward model")
+    for command in (reward_eval, best_of_n):
+        add_model_arguments(command)
+        command.add_argument("--reward-adapter", required=True)
+        command.add_argument("--split", choices=("validation", "test"), default="validation")
+        command.add_argument("--limit", type=positive)
+        command.add_argument("--max-length", type=positive, default=2048)
+    best_of_n.add_argument("--adapter", help="Policy adapter used for sampling (default: base model)")
+    best_of_n.add_argument("--n", type=group_size, default=8)
+    best_of_n.add_argument("--temperature", type=temperature, default=1.0)
+    best_of_n.add_argument("--max-new-tokens", type=positive, default=96)
     return parser
+
+
+def add_model_arguments(command):
+    command.add_argument("--model", default="Qwen/Qwen3-0.6B")
+    command.add_argument("--revision", default="c1899de289a04d12100db370d81485cdf75e47ca")
+    command.add_argument("--snapshot", help="Local snapshot of the specified model and revision")
+    command.add_argument("--device", choices=("cpu", "cuda"), default="cpu")
+    command.add_argument("--threads", type=positive, default=4)
+    command.add_argument("--seed", type=int, default=42)
+    command.add_argument("--prompt-style", choices=("original", "two-shot"), default="original")
+    command.add_argument("--output", required=True)
 
 
 def main(argv=None):
@@ -471,8 +495,20 @@ def main(argv=None):
         print(json.dumps(write_dataset(args.output), indent=2))
     elif args.command == "compare":
         print(json.dumps(compare(args.directories), indent=2))
+    elif args.command == "train" and args.method == "reward":
+        import reward_model
+
+        reward_model.train_reward(args)
     elif args.command == "train":
         train(args)
+    elif args.command == "reward-eval":
+        import reward_model
+
+        reward_model.evaluate_reward(args)
+    elif args.command == "best-of-n":
+        import reward_model
+
+        reward_model.best_of_n(args)
     else:
         evaluate(args)
 
