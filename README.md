@@ -43,7 +43,8 @@ See the [v2 protocol](PROTOCOL_V2.md), [v2 report](EXPERIMENT_V2.md) and
 ## Run locally
 
 Use PowerShell in this directory with Python 3.11. Initial downloads require
-internet access; no paid inference service is used. The suite contains 28 tests.
+internet access; no paid inference service is used. The suite contains 40 tests;
+the tiny-model smoke test is skipped when torch, TRL and PEFT are not installed.
 
 ```powershell
 py -3.11 -m venv .venv
@@ -70,15 +71,24 @@ The CLI also offers the larger `Qwen/Qwen3-0.6B` as its pinned default; its
 pretrained configuration has not been run locally. The commands above explicitly
 select the smaller model used for the CPU pilot.
 
-## Optional GRPO
+## SFT followed by GRPO (v3, prespecified)
 
-```powershell
-& $labPython run.py train @pilotArgs --method grpo --steps 4 --learning-rate 1e-5 --output runs/grpo-4
-```
+The [v3 protocol](PROTOCOL_V3.md) adds the sequence used by current open
+post-training recipes: supervised fine-tuning first, then reinforcement learning
+with verifiable rewards. GRPO continues the SFT adapter (`--init-adapter`)
+with eight sampled completions per prompt, the DAPO loss with clip-higher and
+masking of truncated completions, and no reference model.
 
-GRPO uses rule rewards. Only its tiny random-model path has been checked:
-all rewards were zero and parameters did not change. No pretrained GRPO run
-has been completed; this optional command is outside the v2 comparison.
+The training reward is graded: format validity, decision, and F1 scores for the
+missing fields and evidence IDs, so near misses still carry signal. Evaluation
+stays exact. Training logs record the reward per component, the share of groups
+with zero reward variance (which produce no gradient) and the share of
+truncated completions.
+
+**Status: not yet run.** The code path is tested end to end on a tiny random
+model without downloads (`tools/make_tiny_snapshot.py`). No pretrained v3
+result exists yet; results will be added here only after the prespecified run.
+The commands are listed in the protocol.
 
 Research concept: Milad Morad. Implementation developed with AI assistance.
 
@@ -86,5 +96,7 @@ Research concept: Milad Morad. Implementation developed with AI assistance.
 their upstream licenses.
 
 Sources: [SmolLM2 model card](https://huggingface.co/HuggingFaceTB/SmolLM2-135M-Instruct),
+[GRPO](https://arxiv.org/abs/2402.03300), [DAPO](https://arxiv.org/abs/2503.14476),
+[Dr. GRPO](https://arxiv.org/abs/2503.20783), [Tülu 3](https://arxiv.org/abs/2411.15124),
 [TRL 1.13.0](https://github.com/huggingface/trl/releases/tag/v1.13.0),
 [PEFT LoRA](https://huggingface.co/docs/peft/developer_guides/lora).
