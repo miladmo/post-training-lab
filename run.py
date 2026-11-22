@@ -10,7 +10,8 @@ import math
 from pathlib import Path
 import time
 
-from tasks import audit_dataset, build_dataset, reward, score_completion, write_dataset
+from tasks import (GRADED_REWARDS, REWARD_COMPONENTS, audit_dataset, build_dataset, reward,
+                   score_completion, write_dataset)
 from prompts import prompt_manifest, prompt_messages
 from summaries import aggregate_results
 
@@ -99,8 +100,73 @@ def fresh_directory(path):
     return path
 
 
+def load_adapter_metadata(adapter, args):
+    """Read an adapter's training record and check it matches the current base and prompt."""
+    adapter_path = Path(adapter)
+    meta = json.loads((adapter_path.parent / "training.json").read_text())
+    for key in ("model", "revision"):
+        if meta[key] != getattr(args, key):
+            raise ValueError(f"Adapter {key} differs from the requested base.")
+    if meta.get("prompt", prompt_manifest("original")) != prompt_manifest(args.prompt_style):
+        raise ValueError("Adapter and requested prompt protocols differ.")
+    return meta
+
+
+def condition_name(meta):
+    return meta.get("condition", meta["method"])
+
+
+def grpo_settings(args):
+    """GRPO settings recorded with every run (see PROTOCOL_V3.md)."""
+    dapo = args.grpo_loss == "dapo"
+    return {
+        "loss_type": args.grpo_loss,
+        "num_generations": args.num_generations,
+        "prompts_per_step": args.prompts_per_step,
+        "temperature": args.temperature,
+        "max_completion_length": args.max_completion_length,
+        "beta": 0.0,
+        "epsilon": 0.2,
+        # DAPO: decoupled clipping range ("clip-higher").
+        "epsilon_high": 0.28 if dapo else 0.2,
+        # Dr. GRPO removes the per-group standard deviation scaling.
+        "scale_rewards": "group" if dapo else "none",
+        # DAPO overlong filtering: truncated samples do not enter the loss.
+        "mask_truncated_completions": not args.keep_truncated,
+        "reward": args.reward,
+        "reward_components": list(REWARD_COMPONENTS) if args.reward == "graded" else ["exact"],
+    }
+
+
+def grpo_diagnostics(log_history):
+    """Summaries of the logged reward signal; zero-variance groups carry no gradient."""
+    rows = [row for row in log_history if "reward" in row]
+    if not rows:
+        return {}
+
+    def mean(key):
+        values = [row[key] for row in rows if key in row]
+        return sum(values) / len(values) if values else None
+
+    components = {name: mean(f"rewards/reward_{name}/mean") for name in REWARD_COMPONENTS}
+    return {
+        "logged_steps": len(rows),
+        "reward_first": rows[0]["reward"], "reward_last": rows[-1]["reward"],
+        "reward_mean": mean("reward"),
+        "frac_reward_zero_std_mean": mean("frac_reward_zero_std"),
+        "frac_reward_zero_std_last": rows[-1].get("frac_reward_zero_std"),
+        # With masking enabled, a clipped ratio near 1 means almost no sample trains.
+        "completions_clipped_ratio_mean": mean("completions/clipped_ratio"),
+        "completion_mean_length_mean": mean("completions/mean_length"),
+        "component_means": {k: v for k, v in components.items() if v is not None},
+    }
+
+
 def train(args):
     preparation_started = time.monotonic()
+    if args.init_adapter and args.method != "grpo":
+        raise ValueError("--init-adapter is only supported for --method grpo.")
+    init_meta = load_adapter_metadata(args.init_adapter, args) if args.init_adapter else None
     import torch
     from datasets import Dataset
     from peft import LoraConfig, get_peft_model
@@ -113,9 +179,17 @@ def train(args):
     model_loading_started = time.monotonic()
     model, tokenizer = setup(args)
     model_loading_seconds = time.monotonic() - model_loading_started
-    model = get_peft_model(model, LoraConfig(
-        r=8, lora_alpha=16, lora_dropout=0.0, target_modules=["q_proj", "v_proj"],
-        bias="none", task_type="CAUSAL_LM"))
+    if init_meta:
+        from peft import PeftModel
+
+        if init_meta["model_files_sha256"] != args.model_files_sha256:
+            raise ValueError("Actual model files differ from the initial adapter's training base.")
+        # Continue training the existing adapter (for example SFT -> GRPO).
+        model = PeftModel.from_pretrained(model, args.init_adapter, is_trainable=True)
+    else:
+        model = get_peft_model(model, LoraConfig(
+            r=8, lora_alpha=16, lora_dropout=0.0, target_modules=["q_proj", "v_proj"],
+            bias="none", task_type="CAUSAL_LM"))
     before = {name: param.detach().cpu().clone()
               for name, param in model.named_parameters() if param.requires_grad}
     data = []
@@ -134,9 +208,12 @@ def train(args):
         else:
             data.append({"prompt": prompt_messages(row["prompt"], args.prompt_style),
                          "expected": row["expected"]})
+    grpo = args.method == "grpo"
     options = dict(
         output_dir=str(output / "checkpoints"), max_steps=args.steps,
-        per_device_train_batch_size=1, gradient_accumulation_steps=2 if args.method == "grpo" else 1,
+        # GRPO: each optimizer step sees prompts_per_step prompts x num_generations samples.
+        per_device_train_batch_size=args.num_generations if grpo else 1,
+        gradient_accumulation_steps=args.prompts_per_step if grpo else 1,
         learning_rate=args.learning_rate, seed=args.seed, data_seed=args.seed,
         use_cpu=args.device == "cpu", bf16=False, fp16=False,
         optim="adamw_torch", dataloader_num_workers=0, dataloader_pin_memory=False,
@@ -172,11 +249,19 @@ def train(args):
         trainer = TimedDPOTrainer(model=model, args=config, train_dataset=dataset,
                                   processing_class=tokenizer)
     else:
-        config = GRPOConfig(**options, num_generations=2, max_completion_length=96,
-                            use_vllm=False, beta=0.0, loss_type="dapo",
-                            chat_template_kwargs={"enable_thinking": False})
+        settings = grpo_settings(args)
+        reward_funcs = list(GRADED_REWARDS) if args.reward == "graded" else [reward]
+        config = GRPOConfig(
+            **options, num_generations=settings["num_generations"],
+            max_completion_length=settings["max_completion_length"],
+            temperature=settings["temperature"], use_vllm=False, beta=settings["beta"],
+            loss_type=settings["loss_type"], epsilon=settings["epsilon"],
+            epsilon_high=settings["epsilon_high"], scale_rewards=settings["scale_rewards"],
+            mask_truncated_completions=settings["mask_truncated_completions"],
+            reward_weights=[1.0 / len(reward_funcs)] * len(reward_funcs),
+            chat_template_kwargs={"enable_thinking": False})
         trainer = GRPOTrainer(model=model, args=config, train_dataset=dataset,
-                              processing_class=tokenizer, reward_funcs=reward)
+                              processing_class=tokenizer, reward_funcs=reward_funcs)
     started = time.monotonic()
     trainer_initialization_seconds = started - trainer_initialization_started
     preparation_seconds = started - preparation_started
@@ -191,8 +276,17 @@ def train(args):
             delta_squared += (current - before[name]).double().square().sum().item()
     trainer.save_model(str(output / "adapter"))
     tokenizer.save_pretrained(output / "adapter")
-    metadata = common_metadata(args) | {
-        "method": args.method, "steps": args.steps, "max_length": args.max_length,
+    condition = f"{condition_name(init_meta)}+{args.method}" if init_meta else args.method
+    extra = {}
+    if grpo:
+        extra = {"grpo": grpo_settings(args),
+                 "grpo_diagnostics": grpo_diagnostics(trainer.state.log_history)}
+    if init_meta:
+        extra["init_adapter_training_sha256"] = fingerprint(init_meta)
+        extra["init_condition"] = condition_name(init_meta)
+    metadata = common_metadata(args) | extra | {
+        "method": args.method, "condition": condition,
+        "steps": args.steps, "max_length": args.max_length,
         "learning_rate": args.learning_rate, "train_count": len(rows),
         "training_data_sha256": fingerprint(rows), "train_seconds": seconds,
         "preparation_seconds": preparation_seconds,
@@ -207,7 +301,9 @@ def train(args):
     }
     save(output / "training.json", metadata)
     print(json.dumps({key: metadata[key] for key in
-                     ("method", "steps", "train_seconds", "adapter_delta_l2")}), flush=True)
+                     ("condition", "steps", "train_seconds", "adapter_delta_l2")}
+                     | ({"grpo_diagnostics": metadata["grpo_diagnostics"]} if grpo else {})),
+          flush=True)
 
 
 def evaluate(args):
@@ -219,14 +315,7 @@ def evaluate(args):
     rows = select_rows(splits[args.split], args.limit)
     adapter_meta = None
     if args.adapter:
-        adapter_path = Path(args.adapter)
-        adapter_meta = json.loads((adapter_path.parent / "training.json").read_text())
-        for key in ("model", "revision"):
-            if adapter_meta[key] != getattr(args, key):
-                raise ValueError(f"Adapter {key} differs from evaluation base.")
-        training_prompt = adapter_meta.get("prompt", prompt_manifest("original"))
-        if training_prompt != prompt_manifest(args.prompt_style):
-            raise ValueError("Adapter and evaluation prompt protocols differ.")
+        adapter_meta = load_adapter_metadata(args.adapter, args)
     output = fresh_directory(args.output)
     model, tokenizer = setup(args)
     if args.adapter:
@@ -256,7 +345,7 @@ def evaluate(args):
         save(output / "predictions.json", predictions)
     summary = aggregate_results(rows, predictions)
     metadata = common_metadata(args) | {
-        "condition": adapter_meta["method"] if adapter_meta else "base",
+        "condition": condition_name(adapter_meta) if adapter_meta else "base",
         "adapter_training_sha256": fingerprint(adapter_meta) if adapter_meta else None,
         "split": args.split, "count": len(rows), "data_sha256": fingerprint(rows),
         "generation": {"do_sample": False, "max_new_tokens": args.max_new_tokens},
@@ -314,6 +403,20 @@ def positive(value):
     return value
 
 
+def group_size(value):
+    value = int(value)
+    if value < 2:
+        raise argparse.ArgumentTypeError("GRPO needs at least two generations per prompt.")
+    return value
+
+
+def temperature(value):
+    value = float(value)
+    if not math.isfinite(value) or value <= 0:
+        raise argparse.ArgumentTypeError("Temperature must be finite and positive.")
+    return value
+
+
 def learning_rate(value):
     value = float(value)
     if not math.isfinite(value) or value <= 0:
@@ -321,7 +424,7 @@ def learning_rate(value):
     return value
 
 
-def main():
+def build_parser():
     parser = argparse.ArgumentParser(description=__doc__)
     commands = parser.add_subparsers(dest="command", required=True)
     prepare = commands.add_parser("prepare")
@@ -343,12 +446,27 @@ def main():
             command.add_argument("--steps", type=positive, default=4)
             command.add_argument("--max-length", type=positive, default=512)
             command.add_argument("--learning-rate", type=learning_rate, default=2e-4)
+            command.add_argument("--init-adapter",
+                                 help="Continue from this adapter (GRPO only), e.g. an SFT adapter")
+            grpo_options = command.add_argument_group("GRPO")
+            grpo_options.add_argument("--reward", choices=("graded", "exact"), default="graded")
+            grpo_options.add_argument("--grpo-loss", choices=("dapo", "dr_grpo"), default="dapo")
+            grpo_options.add_argument("--num-generations", type=group_size, default=8)
+            grpo_options.add_argument("--prompts-per-step", type=positive, default=2)
+            grpo_options.add_argument("--temperature", type=temperature, default=1.0)
+            grpo_options.add_argument("--max-completion-length", type=positive, default=96)
+            grpo_options.add_argument("--keep-truncated", action="store_true",
+                                      help="Include completions that hit the length limit in the loss")
         else:
             command.add_argument("--adapter")
             command.add_argument("--split", choices=("validation", "test"), default="validation")
             command.add_argument("--limit", type=positive)
             command.add_argument("--max-new-tokens", type=positive, default=96)
-    args = parser.parse_args()
+    return parser
+
+
+def main(argv=None):
+    args = build_parser().parse_args(argv)
     if args.command == "prepare":
         print(json.dumps(write_dataset(args.output), indent=2))
     elif args.command == "compare":
