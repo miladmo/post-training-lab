@@ -121,7 +121,13 @@ sampled `ready` answers and the KL value, and evaluations report all metrics
 split by the expected decision. Collapse is defined in advance as at least 20
 of 24 greedy answers with the same decision.
 
-**Status: running** in the workflow `pilot-v5.yml`; results will be added here.
+**Result (23 November 2026, [report](EXPERIMENT_V5.md)).** Both arms collapsed
+towards `ready` (23/24 with beta 0, 22/24 with beta 0.04), so the KL anchor at
+this strength did not prevent the collapse. The KL stayed below 0.004 and the
+sampled share of `ready` answers rose only from 0.54 to about 0.6, while greedy
+decoding flipped almost every case. A post-hoc reading is that the SFT policy
+barely discriminates the cases and GRPO shifts a global preference that greedy
+decoding amplifies. BASE and SFT again reproduced earlier runs exactly.
 
 Research concept: Milad Morad. Implementation developed with AI assistance.
 
