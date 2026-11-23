@@ -1,0 +1,152 @@
+[
+  {
+    "condition": "base",
+    "count": 24,
+    "metrics": {
+      "schema_valid": 0.8333333333333334,
+      "decision_correct": 0.4583333333333333,
+      "missing_fields_exact": 0.041666666666666664,
+      "evidence_exact": 0.5,
+      "task_success": 0.0
+    },
+    "seconds": 49.381549439999986,
+    "roles": {
+      "HR": {
+        "count": 8,
+        "metrics": {
+          "schema_valid": 1.0,
+          "decision_correct": 0.5,
+          "missing_fields_exact": 0.125,
+          "evidence_exact": 0.75,
+          "task_success": 0.0
+        }
+      },
+      "Sales": {
+        "count": 8,
+        "metrics": {
+          "schema_valid": 0.625,
+          "decision_correct": 0.375,
+          "missing_fields_exact": 0.0,
+          "evidence_exact": 0.375,
+          "task_success": 0.0
+        }
+      },
+      "Science": {
+        "count": 8,
+        "metrics": {
+          "schema_valid": 0.875,
+          "decision_correct": 0.5,
+          "missing_fields_exact": 0.0,
+          "evidence_exact": 0.375,
+          "task_success": 0.0
+        }
+      }
+    },
+    "context_pairs": {
+      "count": 12,
+      "both_correct": 0,
+      "accuracy": 0.0,
+      "incomplete_pairs": 0
+    }
+  },
+  {
+    "condition": "sft",
+    "count": 24,
+    "metrics": {
+      "schema_valid": 1.0,
+      "decision_correct": 0.7916666666666666,
+      "missing_fields_exact": 0.5,
+      "evidence_exact": 0.5833333333333334,
+      "task_success": 0.25
+    },
+    "seconds": 54.20254452199998,
+    "roles": {
+      "HR": {
+        "count": 8,
+        "metrics": {
+          "schema_valid": 1.0,
+          "decision_correct": 0.875,
+          "missing_fields_exact": 0.5,
+          "evidence_exact": 0.625,
+          "task_success": 0.375
+        }
+      },
+      "Sales": {
+        "count": 8,
+        "metrics": {
+          "schema_valid": 1.0,
+          "decision_correct": 0.75,
+          "missing_fields_exact": 0.625,
+          "evidence_exact": 0.5,
+          "task_success": 0.25
+        }
+      },
+      "Science": {
+        "count": 8,
+        "metrics": {
+          "schema_valid": 1.0,
+          "decision_correct": 0.75,
+          "missing_fields_exact": 0.375,
+          "evidence_exact": 0.625,
+          "task_success": 0.125
+        }
+      }
+    },
+    "context_pairs": {
+      "count": 12,
+      "both_correct": 0,
+      "accuracy": 0.0,
+      "incomplete_pairs": 0
+    }
+  },
+  {
+    "condition": "sft+grpo",
+    "count": 24,
+    "metrics": {
+      "schema_valid": 1.0,
+      "decision_correct": 0.5416666666666666,
+      "missing_fields_exact": 0.5,
+      "evidence_exact": 0.5833333333333334,
+      "task_success": 0.2916666666666667
+    },
+    "seconds": 50.382755366999845,
+    "roles": {
+      "HR": {
+        "count": 8,
+        "metrics": {
+          "schema_valid": 1.0,
+          "decision_correct": 0.5,
+          "missing_fields_exact": 0.5,
+          "evidence_exact": 0.5,
+          "task_success": 0.25
+        }
+      },
+      "Sales": {
+        "count": 8,
+        "metrics": {
+          "schema_valid": 1.0,
+          "decision_correct": 0.5,
+          "missing_fields_exact": 0.5,
+          "evidence_exact": 0.5,
+          "task_success": 0.25
+        }
+      },
+      "Science": {
+        "count": 8,
+        "metrics": {
+          "schema_valid": 1.0,
+          "decision_correct": 0.625,
+          "missing_fields_exact": 0.5,
+          "evidence_exact": 0.75,
+          "task_success": 0.375
+        }
+      }
+    },
+    "context_pairs": {
+      "count": 12,
+      "both_correct": 0,
+      "accuracy": 0.0,
+      "incomplete_pairs": 0
+    }
+  }
+]

@@ -1,0 +1,290 @@
+[
+  {
+    "id": "hr_learning_session-1-1",
+    "role": "HR",
+    "chosen_score": -0.002297639846801758,
+    "rejected_score": -0.6627690196037292,
+    "corruption_scores": {
+      "trailing_text": 1.3640639781951904,
+      "markdown_fence": 0.482386976480484,
+      "truncated": 1.036653757095337,
+      "renamed_key": 0.01896532252430916
+    }
+  },
+  {
+    "id": "sales_renewal_brief-1-1",
+    "role": "Sales",
+    "chosen_score": 0.09058551490306854,
+    "rejected_score": -0.6599006056785583,
+    "corruption_scores": {
+      "trailing_text": 1.3570516109466553,
+      "markdown_fence": 0.3655526638031006,
+      "truncated": 1.5767604112625122,
+      "renamed_key": 0.08447551727294922
+    }
+  },
+  {
+    "id": "science_analysis_review-1-1",
+    "role": "Science",
+    "chosen_score": 0.40348541736602783,
+    "rejected_score": -0.34803342819213867,
+    "corruption_scores": {
+      "trailing_text": 1.7515716552734375,
+      "markdown_fence": 0.6700267791748047,
+      "truncated": 1.322770118713379,
+      "renamed_key": 0.42107510566711426
+    }
+  },
+  {
+    "id": "hr_learning_session-1-2",
+    "role": "HR",
+    "chosen_score": 0.02901148796081543,
+    "rejected_score": 0.06309151649475098,
+    "corruption_scores": {
+      "trailing_text": 1.3100013732910156,
+      "markdown_fence": 0.4151947498321533,
+      "truncated": 2.0088727474212646,
+      "renamed_key": 0.03434901684522629
+    }
+  },
+  {
+    "id": "sales_renewal_brief-1-2",
+    "role": "Sales",
+    "chosen_score": 0.1024010181427002,
+    "rejected_score": 0.081324003636837,
+    "corruption_scores": {
+      "trailing_text": 1.4181513786315918,
+      "markdown_fence": 0.38158345222473145,
+      "truncated": 1.0357589721679688,
+      "renamed_key": 0.055385034531354904
+    }
+  },
+  {
+    "id": "science_analysis_review-1-2",
+    "role": "Science",
+    "chosen_score": 0.3854248523712158,
+    "rejected_score": 0.36031031608581543,
+    "corruption_scores": {
+      "trailing_text": 1.6489174365997314,
+      "markdown_fence": 0.6918951272964478,
+      "truncated": 2.6861066818237305,
+      "renamed_key": 0.37119704484939575
+    }
+  },
+  {
+    "id": "hr_learning_session-2-1",
+    "role": "HR",
+    "chosen_score": -0.05306863784790039,
+    "rejected_score": -0.8283469676971436,
+    "corruption_scores": {
+      "trailing_text": 1.2319215536117554,
+      "markdown_fence": 0.4003416895866394,
+      "truncated": 1.0285727977752686,
+      "renamed_key": -0.07543905824422836
+    }
+  },
+  {
+    "id": "sales_renewal_brief-2-1",
+    "role": "Sales",
+    "chosen_score": 0.012962542474269867,
+    "rejected_score": -0.6905784606933594,
+    "corruption_scores": {
+      "trailing_text": 1.356917142868042,
+      "markdown_fence": 0.4294331967830658,
+      "truncated": 1.1451835632324219,
+      "renamed_key": -0.018625259399414062
+    }
+  },
+  {
+    "id": "science_analysis_review-2-1",
+    "role": "Science",
+    "chosen_score": 0.17132899165153503,
+    "rejected_score": -0.5812435150146484,
+    "corruption_scores": {
+      "trailing_text": 1.556566596031189,
+      "markdown_fence": 0.5081686973571777,
+      "truncated": 1.3043720722198486,
+      "renamed_key": 0.20998620986938477
+    }
+  },
+  {
+    "id": "hr_learning_session-2-2",
+    "role": "HR",
+    "chosen_score": -0.04938340187072754,
+    "rejected_score": -0.0665099248290062,
+    "corruption_scores": {
+      "trailing_text": 1.1834629774093628,
+      "markdown_fence": 0.4200010299682617,
+      "truncated": 2.709932327270508,
+      "renamed_key": -0.1378268301486969
+    }
+  },
+  {
+    "id": "sales_renewal_brief-2-2",
+    "role": "Sales",
+    "chosen_score": 0.07747726142406464,
+    "rejected_score": 0.06768156588077545,
+    "corruption_scores": {
+      "trailing_text": 1.3353385925292969,
+      "markdown_fence": 0.43149757385253906,
+      "truncated": 2.6243157386779785,
+      "renamed_key": 0.02478957176208496
+    }
+  },
+  {
+    "id": "science_analysis_review-2-2",
+    "role": "Science",
+    "chosen_score": 0.2611851692199707,
+    "rejected_score": 0.2965475916862488,
+    "corruption_scores": {
+      "trailing_text": 1.4807095527648926,
+      "markdown_fence": 0.5268537998199463,
+      "truncated": 2.340555191040039,
+      "renamed_key": 0.1798933893442154
+    }
+  },
+  {
+    "id": "hr_learning_session-3-1",
+    "role": "HR",
+    "chosen_score": -0.12246397137641907,
+    "rejected_score": -0.029107093811035156,
+    "corruption_scores": {
+      "trailing_text": 1.3993089199066162,
+      "markdown_fence": 0.49143528938293457,
+      "truncated": 2.7225494384765625,
+      "renamed_key": -0.07376646995544434
+    }
+  },
+  {
+    "id": "sales_renewal_brief-3-1",
+    "role": "Sales",
+    "chosen_score": -0.0405576229095459,
+    "rejected_score": 0.03991816192865372,
+    "corruption_scores": {
+      "trailing_text": 1.4211928844451904,
+      "markdown_fence": 0.4669329822063446,
+      "truncated": 2.982266664505005,
+      "renamed_key": -0.009285543113946915
+    }
+  },
+  {
+    "id": "science_analysis_review-3-1",
+    "role": "Science",
+    "chosen_score": 0.17686963081359863,
+    "rejected_score": 0.311729371547699,
+    "corruption_scores": {
+      "trailing_text": 1.6766036748886108,
+      "markdown_fence": 0.6633402705192566,
+      "truncated": 3.0920069217681885,
+      "renamed_key": 0.231159508228302
+    }
+  },
+  {
+    "id": "hr_learning_session-3-2",
+    "role": "HR",
+    "chosen_score": 0.09229016304016113,
+    "rejected_score": -0.007084578275680542,
+    "corruption_scores": {
+      "trailing_text": 1.393466591835022,
+      "markdown_fence": 0.41346216201782227,
+      "truncated": 1.4100673198699951,
+      "renamed_key": 0.11994313448667526
+    }
+  },
+  {
+    "id": "sales_renewal_brief-3-2",
+    "role": "Sales",
+    "chosen_score": 0.10707572102546692,
+    "rejected_score": 0.024904727935791016,
+    "corruption_scores": {
+      "trailing_text": 1.3767969608306885,
+      "markdown_fence": 0.3204219341278076,
+      "truncated": 1.0698318481445312,
+      "renamed_key": 0.1505603790283203
+    }
+  },
+  {
+    "id": "science_analysis_review-3-2",
+    "role": "Science",
+    "chosen_score": 0.38760441541671753,
+    "rejected_score": 0.22947168350219727,
+    "corruption_scores": {
+      "trailing_text": 1.6371116638183594,
+      "markdown_fence": 0.535790741443634,
+      "truncated": 2.7022478580474854,
+      "renamed_key": 0.3905918598175049
+    }
+  },
+  {
+    "id": "hr_learning_session-4-1",
+    "role": "HR",
+    "chosen_score": -0.022357024252414703,
+    "rejected_score": -0.735809326171875,
+    "corruption_scores": {
+      "trailing_text": 1.311536431312561,
+      "markdown_fence": 0.38396263122558594,
+      "truncated": 1.1045905351638794,
+      "renamed_key": -0.029850482940673828
+    }
+  },
+  {
+    "id": "sales_renewal_brief-4-1",
+    "role": "Sales",
+    "chosen_score": 0.011224508285522461,
+    "rejected_score": -0.7328514456748962,
+    "corruption_scores": {
+      "trailing_text": 1.3906868696212769,
+      "markdown_fence": 0.3889589309692383,
+      "truncated": 1.2118138074874878,
+      "renamed_key": -0.026664555072784424
+    }
+  },
+  {
+    "id": "science_analysis_review-4-1",
+    "role": "Science",
+    "chosen_score": 0.266634464263916,
+    "rejected_score": -0.5415289402008057,
+    "corruption_scores": {
+      "trailing_text": 1.610586404800415,
+      "markdown_fence": 0.5432984828948975,
+      "truncated": 1.2889413833618164,
+      "renamed_key": 0.2315959930419922
+    }
+  },
+  {
+    "id": "hr_learning_session-4-2",
+    "role": "HR",
+    "chosen_score": -0.033841680735349655,
+    "rejected_score": 0.026315927505493164,
+    "corruption_scores": {
+      "trailing_text": 1.3350343704223633,
+      "markdown_fence": 0.5075654983520508,
+      "truncated": -0.583551287651062,
+      "renamed_key": 0.06688570976257324
+    }
+  },
+  {
+    "id": "sales_renewal_brief-4-2",
+    "role": "Sales",
+    "chosen_score": 0.1211245059967041,
+    "rejected_score": 0.11806344985961914,
+    "corruption_scores": {
+      "trailing_text": 1.3522697687149048,
+      "markdown_fence": 0.3716106116771698,
+      "truncated": 1.8391106128692627,
+      "renamed_key": 0.14479732513427734
+    }
+  },
+  {
+    "id": "science_analysis_review-4-2",
+    "role": "Science",
+    "chosen_score": 0.2666027545928955,
+    "rejected_score": 0.35533905029296875,
+    "corruption_scores": {
+      "trailing_text": 1.6242246627807617,
+      "markdown_fence": 0.56949782371521,
+      "truncated": 1.936576247215271,
+      "renamed_key": 0.2536967396736145
+    }
+  }
+]
