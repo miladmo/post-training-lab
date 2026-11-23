@@ -220,6 +220,19 @@ def _component_reward(name):
 GRADED_REWARDS = tuple(_component_reward(name) for name in REWARD_COMPONENTS)
 
 
+def reward_answers_ready(completions, expected, **kwargs):
+    """Diagnostic only (weight 0 in training): 1 if the completion validly answers 'ready'."""
+    out = []
+    for completion in completions:
+        try:
+            text = _completion_text(completion)
+            prediction = _loads(text) if isinstance(text, str) else None
+        except (TypeError, ValueError):
+            prediction = None
+        out.append(float(_valid_prediction(prediction) and prediction["decision"] == "ready"))
+    return out
+
+
 def graded_reward(completions, expected, **kwargs):
     """Equal-weight mean of the four graded components, bounded in [0, 1]."""
     parts = [function(completions, expected) for function in GRADED_REWARDS]

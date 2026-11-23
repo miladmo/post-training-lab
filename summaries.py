@@ -35,6 +35,7 @@ def aggregate_results(rows, predictions):
 
     all_scores = []
     role_scores = defaultdict(list)
+    decision_scores = defaultdict(list)
     pairs = defaultdict(list)
     for case_id, row in cases.items():
         prediction = saved[case_id]
@@ -47,6 +48,7 @@ def aggregate_results(rows, predictions):
             raise ValueError(f"Unsupported task role: {row['role']}")
         all_scores.append(actual)
         role_scores[row["role"]].append(actual)
+        decision_scores[row["expected"]["decision"]].append(actual)
         context = json.loads(row["prompt"][1]["content"])
         pair_key = (row["family"], json.dumps(context["evidence"], sort_keys=True))
         pairs[pair_key].append((row["expected"], actual))
@@ -67,6 +69,9 @@ def aggregate_results(rows, predictions):
         "metrics": _mean(all_scores),
         "roles": {role: {"count": len(scores), "metrics": _mean(scores)}
                   for role, scores in sorted(role_scores.items())},
+        # Split by the expected decision exposes collapse onto one answer.
+        "expected_decisions": {decision: {"count": len(scores), "metrics": _mean(scores)}
+                               for decision, scores in sorted(decision_scores.items())},
         "context_pairs": {
             "count": count,
             "both_correct": both_correct,

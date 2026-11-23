@@ -10,11 +10,10 @@ rule-based oracle on identical candidates. See PROTOCOL_V4.md.
 
 from collections import Counter
 import json
-from pathlib import Path
 import time
 
-from run import (common_metadata, fingerprint, fresh_directory, load_adapter_metadata, render,
-                 save, select_rows, setup)
+from run import (common_metadata, fingerprint, fresh_directory, load_adapter_metadata, load_policy,
+                 render, save, select_rows, setup)
 from summaries import aggregate_results
 from tasks import _loads, _valid_prediction, audit_dataset, build_dataset, graded_reward, score_completion
 
@@ -231,7 +230,6 @@ def evaluate_reward(args):
 
 def best_of_n(args):
     import torch
-    from peft import PeftModel
     from transformers import set_seed
 
     splits = build_dataset()
@@ -242,9 +240,7 @@ def best_of_n(args):
     reward_model, rm_tokenizer, rm_meta = load_reward_model(args)
     policy, tokenizer = setup(args)
     if policy_meta:
-        if policy_meta["model_files_sha256"] != args.model_files_sha256:
-            raise ValueError("Actual model files differ from the policy adapter's training base.")
-        policy = PeftModel.from_pretrained(policy, args.adapter, is_trainable=False)
+        policy = load_policy(policy, args.adapter, policy_meta, args)
     policy.eval()
     started = time.monotonic()
     cases = []

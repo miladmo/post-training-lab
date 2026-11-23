@@ -11,7 +11,7 @@ from pathlib import Path
 import time
 
 from tasks import (GRADED_REWARDS, REWARD_COMPONENTS, audit_dataset, build_dataset, reward,
-                   score_completion, write_dataset)
+                   reward_answers_ready, score_completion, write_dataset)
 from prompts import prompt_manifest, prompt_messages
 from summaries import aggregate_results
 
@@ -120,6 +120,22 @@ def load_adapter_metadata(adapter, args):
     return meta
 
 
+def load_policy(model, adapter, meta, args):
+    """Attach a policy adapter. Adapters trained on a merged base (``init_mode == "merge"``)
+    first merge their recorded initial adapter, which is checked against its training record."""
+    from peft import PeftModel
+
+    if meta["model_files_sha256"] != args.model_files_sha256:
+        raise ValueError("Actual model files differ from the adapter's training base.")
+    if meta.get("init_mode") == "merge":
+        base_adapter = meta["init_adapter"]
+        base_meta = load_adapter_metadata(base_adapter, args)
+        if fingerprint(base_meta) != meta["init_adapter_training_sha256"]:
+            raise ValueError("The recorded initial adapter has changed since training.")
+        model = PeftModel.from_pretrained(model, base_adapter, is_trainable=False).merge_and_unload()
+    return PeftModel.from_pretrained(model, adapter, is_trainable=False)
+
+
 def condition_name(meta):
     return meta.get("condition", meta["method"])
 
@@ -133,7 +149,7 @@ def grpo_settings(args):
         "prompts_per_step": args.prompts_per_step,
         "temperature": args.temperature,
         "max_completion_length": args.max_completion_length,
-        "beta": 0.0,
+        "beta": args.beta,
         "epsilon": 0.2,
         # DAPO: decoupled clipping range ("clip-higher").
         "epsilon_high": 0.28 if dapo else 0.2,
@@ -143,6 +159,8 @@ def grpo_settings(args):
         "mask_truncated_completions": not args.keep_truncated,
         "reward": args.reward,
         "reward_components": list(REWARD_COMPONENTS) if args.reward == "graded" else ["exact"],
+        "diagnostic_rewards": ["answers_ready (weight 0)"],
+        "init_mode": args.init_mode if args.init_adapter else None,
     }
 
 
@@ -167,6 +185,8 @@ def grpo_diagnostics(log_history):
         "completions_clipped_ratio_mean": mean("completions/clipped_ratio"),
         "completion_mean_length_mean": mean("completions/mean_length"),
         "component_means": {k: v for k, v in components.items() if v is not None},
+        "answers_ready_share": [row.get("rewards/reward_answers_ready/mean") for row in rows],
+        "kl": [row.get("kl") for row in rows],
     }
 
 
@@ -174,6 +194,9 @@ def train(args):
     preparation_started = time.monotonic()
     if args.init_adapter and args.method != "grpo":
         raise ValueError("--init-adapter is only supported for --method grpo.")
+    if args.method == "grpo" and args.beta > 0 and args.init_adapter and args.init_mode != "merge":
+        raise ValueError("beta > 0 with --init-adapter requires --init-mode merge, otherwise the "
+                         "KL reference would be the base model instead of the initial policy.")
     init_meta = load_adapter_metadata(args.init_adapter, args) if args.init_adapter else None
     import torch
     from datasets import Dataset
@@ -192,8 +215,16 @@ def train(args):
 
         if init_meta["model_files_sha256"] != args.model_files_sha256:
             raise ValueError("Actual model files differ from the initial adapter's training base.")
-        # Continue training the existing adapter (for example SFT -> GRPO).
-        model = PeftModel.from_pretrained(model, args.init_adapter, is_trainable=True)
+        if args.init_mode == "merge":
+            # Merge the initial adapter into the base and train a fresh adapter on top.
+            # With beta > 0 the reference policy (adapter disabled) is then the merged model.
+            model = PeftModel.from_pretrained(model, args.init_adapter, is_trainable=False).merge_and_unload()
+            model = get_peft_model(model, LoraConfig(
+                r=8, lora_alpha=16, lora_dropout=0.0, target_modules=["q_proj", "v_proj"],
+                bias="none", task_type="CAUSAL_LM"))
+        else:
+            # Continue training the existing adapter (for example SFT -> GRPO).
+            model = PeftModel.from_pretrained(model, args.init_adapter, is_trainable=True)
     else:
         model = get_peft_model(model, LoraConfig(
             r=8, lora_alpha=16, lora_dropout=0.0, target_modules=["q_proj", "v_proj"],
@@ -258,7 +289,9 @@ def train(args):
                                   processing_class=tokenizer)
     else:
         settings = grpo_settings(args)
-        reward_funcs = list(GRADED_REWARDS) if args.reward == "graded" else [reward]
+        task_rewards = list(GRADED_REWARDS) if args.reward == "graded" else [reward]
+        # The diagnostic function has weight 0: it is logged but never optimized.
+        reward_funcs = task_rewards + [reward_answers_ready]
         config = GRPOConfig(
             **options, num_generations=settings["num_generations"],
             max_completion_length=settings["max_completion_length"],
@@ -266,7 +299,7 @@ def train(args):
             loss_type=settings["loss_type"], epsilon=settings["epsilon"],
             epsilon_high=settings["epsilon_high"], scale_rewards=settings["scale_rewards"],
             mask_truncated_completions=settings["mask_truncated_completions"],
-            reward_weights=[1.0 / len(reward_funcs)] * len(reward_funcs),
+            reward_weights=[1.0 / len(task_rewards)] * len(task_rewards) + [0.0],
             chat_template_kwargs={"enable_thinking": False})
         trainer = GRPOTrainer(model=model, args=config, train_dataset=dataset,
                               processing_class=tokenizer, reward_funcs=reward_funcs)
@@ -285,6 +318,8 @@ def train(args):
     trainer.save_model(str(output / "adapter"))
     tokenizer.save_pretrained(output / "adapter")
     condition = f"{condition_name(init_meta)}+{args.method}" if init_meta else args.method
+    if grpo and args.beta > 0:
+        condition += f"-kl{args.beta:g}"
     extra = {}
     if grpo:
         extra = {"grpo": grpo_settings(args),
@@ -292,6 +327,8 @@ def train(args):
     if init_meta:
         extra["init_adapter_training_sha256"] = fingerprint(init_meta)
         extra["init_condition"] = condition_name(init_meta)
+        extra["init_mode"] = args.init_mode
+        extra["init_adapter"] = str(args.init_adapter)
     metadata = common_metadata(args) | extra | {
         "method": args.method, "condition": condition,
         "steps": args.steps, "max_length": args.max_length,
@@ -316,7 +353,6 @@ def train(args):
 
 def evaluate(args):
     import torch
-    from peft import PeftModel
 
     splits = build_dataset()
     audit_dataset(splits)
@@ -327,9 +363,7 @@ def evaluate(args):
     output = fresh_directory(args.output)
     model, tokenizer = setup(args)
     if args.adapter:
-        if adapter_meta["model_files_sha256"] != args.model_files_sha256:
-            raise ValueError("Actual model files differ from the adapter's training base.")
-        model = PeftModel.from_pretrained(model, args.adapter, is_trainable=False)
+        model = load_policy(model, args.adapter, adapter_meta, args)
     model.eval()
     predictions = []
     started = time.monotonic()
@@ -394,12 +428,15 @@ def compare(directories):
             except KeyError as error:
                 raise ValueError("Unknown evaluation case.") from error
             summary = aggregate_results(source_rows, predictions)
-            if any(meta[key] != summary[key] for key in ("metrics", "roles", "context_pairs")):
+            keys = ("metrics", "roles", "context_pairs") + (
+                ("expected_decisions",) if "expected_decisions" in meta else ())
+            if any(meta[key] != summary[key] for key in keys):
                 raise ValueError("Role or context-pair summary differs from case scores.")
         if loaded and signature != loaded[0][0]:
             raise ValueError("Evaluation settings or cases differ; comparison rejected.")
         loaded.append((signature, meta))
-    return [{key: meta[key] for key in ("condition", "count", "metrics", "seconds", "roles", "context_pairs")
+    return [{key: meta[key] for key in ("condition", "count", "metrics", "seconds", "roles",
+                                        "expected_decisions", "context_pairs")
              if key in meta}
             for _, meta in loaded]
 
@@ -408,6 +445,13 @@ def positive(value):
     value = int(value)
     if value <= 0:
         raise argparse.ArgumentTypeError("Must be positive.")
+    return value
+
+
+def nonnegative(value):
+    value = float(value)
+    if not math.isfinite(value) or value < 0:
+        raise argparse.ArgumentTypeError("Value must be finite and non-negative.")
     return value
 
 
@@ -456,6 +500,11 @@ def build_parser():
             grpo_options.add_argument("--prompts-per-step", type=positive, default=2)
             grpo_options.add_argument("--temperature", type=temperature, default=1.0)
             grpo_options.add_argument("--max-completion-length", type=positive, default=96)
+            grpo_options.add_argument("--beta", type=nonnegative, default=0.0,
+                                      help="KL coefficient towards the reference policy")
+            grpo_options.add_argument("--init-mode", choices=("continue", "merge"), default="continue",
+                                      help="continue: train the initial adapter further; merge: merge it "
+                                           "into the base and train a fresh adapter")
             grpo_options.add_argument("--keep-truncated", action="store_true",
                                       help="Include completions that hit the length limit in the loss")
         else:

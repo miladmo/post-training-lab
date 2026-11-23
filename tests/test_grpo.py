@@ -59,6 +59,28 @@ class GradedRewardTests(unittest.TestCase):
             tasks.GRADED_REWARDS[0](["x"], [])
 
 
+class CollapseDiagnosticsTests(unittest.TestCase):
+    def test_answers_ready_counts_only_valid_ready_answers(self):
+        ready = json.dumps({"decision": "ready", "missing": [], "evidence_ids": ["E1"]})
+        review = json.dumps({"decision": "needs_review", "missing": ["buddy"], "evidence_ids": []})
+        values = tasks.reward_answers_ready([ready, review, ready + " x", None], [None] * 4)
+        self.assertEqual(values, [1.0, 0.0, 0.0, 0.0])
+
+    def test_summary_splits_by_expected_decision(self):
+        from summaries import aggregate_results
+
+        rows = tasks.build_dataset()["validation"]
+        predictions = []
+        for row in rows:
+            text = json.dumps({"decision": "ready", "missing": [], "evidence_ids": row["expected"]["evidence_ids"]})
+            predictions.append({"id": row["id"], "expected": row["expected"], "completion": text,
+                                "metrics": tasks.score_completion(text, row["expected"])})
+        split = aggregate_results(rows, predictions)["expected_decisions"]
+        self.assertEqual(split["ready"]["metrics"]["decision_correct"], 1.0)
+        self.assertEqual(split["needs_review"]["metrics"]["decision_correct"], 0.0)
+        self.assertEqual(split["ready"]["count"] + split["needs_review"]["count"], len(rows))
+
+
 class GRPOConfigurationTests(unittest.TestCase):
     def parse(self, *extra):
         return run.build_parser().parse_args(
@@ -81,8 +103,16 @@ class GRPOConfigurationTests(unittest.TestCase):
         self.assertEqual(settings["epsilon_high"], 0.2)
         self.assertFalse(settings["mask_truncated_completions"])
 
+    def test_kl_anchor_requires_merged_initial_adapter(self):
+        args = self.parse("--beta", "0.04", "--init-adapter", "x")
+        with self.assertRaises(ValueError):
+            run.train(args)
+        settings = run.grpo_settings(self.parse("--beta", "0.04", "--init-adapter", "x", "--init-mode", "merge"))
+        self.assertEqual((settings["beta"], settings["init_mode"]), (0.04, "merge"))
+        self.assertIsNone(run.grpo_settings(self.parse())["init_mode"])
+
     def test_invalid_group_and_temperature_are_rejected(self):
-        for extra in (("--num-generations", "1"), ("--temperature", "0")):
+        for extra in (("--num-generations", "1"), ("--temperature", "0"), ("--beta", "-0.1")):
             with self.subTest(extra=extra), self.assertRaises(SystemExit):
                 self.parse(*extra)
 
@@ -156,6 +186,22 @@ class TinyModelSmokeTest(unittest.TestCase):
             evaluation = json.loads((root / "eval" / "evaluation.json").read_text())
             self.assertEqual(evaluation["condition"], "sft+grpo")
             self.assertEqual(evaluation["count"], 3)
+            self.assertIn("expected_decisions", evaluation)
+
+            # v5 arm: merge the SFT adapter, train a fresh adapter with a KL anchor.
+            run.main(["train", *common, "--method", "grpo", "--steps", "1", "--max-length", "4096",
+                      "--init-adapter", str(root / "sft" / "adapter"), "--init-mode", "merge",
+                      "--beta", "0.04", "--num-generations", "2", "--prompts-per-step", "1",
+                      "--max-completion-length", "8", "--learning-rate", "5e-5",
+                      "--output", str(root / "grpo-kl")])
+            meta = json.loads((root / "grpo-kl" / "training.json").read_text())
+            self.assertEqual(meta["condition"], "sft+grpo-kl0.04")
+            self.assertEqual((meta["init_mode"], meta["grpo"]["beta"]), ("merge", 0.04))
+            self.assertIn("answers_ready_share", meta["grpo_diagnostics"])
+            run.main(["evaluate", *common, "--adapter", str(root / "grpo-kl" / "adapter"),
+                      "--limit", "2", "--max-new-tokens", "8", "--output", str(root / "eval-kl")])
+            evaluation = json.loads((root / "eval-kl" / "evaluation.json").read_text())
+            self.assertEqual(evaluation["condition"], "sft+grpo-kl0.04")
 
 
 if __name__ == "__main__":
