@@ -1,0 +1,101 @@
+name: Pilot runs v3 and v4
+
+# Runs the prespecified v3 (SFT -> GRPO) and v4 (reward model, best-of-N)
+# protocols on a GitHub-hosted CPU runner. Start it from the Actions tab
+# ("Run workflow") or by pushing the branch run/pilot-v3-v4.
+# JSON outputs are committed to the branch results/pilot-v3-v4; adapters and
+# logs are uploaded as a workflow artifact.
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [run/pilot-v3-v4]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: pilot-v3-v4
+  cancel-in-progress: false
+
+env:
+  MODEL: HuggingFaceTB/SmolLM2-135M-Instruct
+  REVISION: 12fd25f77366fa6b3b4b768ec3050bf629380bac
+  PYTHONUNBUFFERED: "1"
+  HF_HUB_DISABLE_TELEMETRY: "1"
+
+jobs:
+  pilot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install pinned dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt
+          python -m pip freeze > environment.txt
+          nproc; lscpu | head -20
+      - name: Software tests
+        run: python -m unittest discover -s tests
+
+      - name: v3 BASE evaluation
+        run: python run.py evaluate --model $MODEL --revision $REVISION --prompt-style two-shot --threads $(nproc) --split validation --output runs/v3-base-val24
+      - name: v3 SFT training
+        run: python run.py train --model $MODEL --revision $REVISION --prompt-style two-shot --threads $(nproc) --method sft --steps 96 --output runs/v3-sft-96
+      - name: v3 SFT evaluation
+        run: python run.py evaluate --model $MODEL --revision $REVISION --prompt-style two-shot --threads $(nproc) --split validation --adapter runs/v3-sft-96/adapter --output runs/v3-sft-val24
+      - name: v3 GRPO training from SFT
+        run: python run.py train --model $MODEL --revision $REVISION --prompt-style two-shot --threads $(nproc) --method grpo --init-adapter runs/v3-sft-96/adapter --steps 96 --learning-rate 5e-5 --output runs/v3-sft-grpo-96
+      - name: v3 SFT+GRPO evaluation
+        run: python run.py evaluate --model $MODEL --revision $REVISION --prompt-style two-shot --threads $(nproc) --split validation --adapter runs/v3-sft-grpo-96/adapter --output runs/v3-sft-grpo-val24
+      - name: v3 comparison
+        run: python run.py compare runs/v3-base-val24 runs/v3-sft-val24 runs/v3-sft-grpo-val24 | tee runs/v3-compare.txt
+
+      - name: v4 reward model training
+        if: ${{ !cancelled() && hashFiles('runs/v3-sft-96/adapter/adapter_config.json') != '' }}
+        run: python run.py train --model $MODEL --revision $REVISION --prompt-style two-shot --threads $(nproc) --method reward --steps 96 --learning-rate 1e-4 --output runs/v4-rm-96
+      - name: v4 reward model reliability
+        if: ${{ !cancelled() && hashFiles('runs/v4-rm-96/adapter/adapter_config.json') != '' }}
+        run: python run.py reward-eval --model $MODEL --revision $REVISION --prompt-style two-shot --threads $(nproc) --reward-adapter runs/v4-rm-96/adapter --split validation --output runs/v4-rm-val24
+      - name: v4 best-of-8
+        if: ${{ !cancelled() && hashFiles('runs/v4-rm-96/adapter/adapter_config.json') != '' }}
+        run: python run.py best-of-n --model $MODEL --revision $REVISION --prompt-style two-shot --threads $(nproc) --adapter runs/v3-sft-96/adapter --reward-adapter runs/v4-rm-96/adapter --n 8 --split validation --output runs/v4-bon8-val24
+
+      - name: Upload all outputs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pilot-v3-v4-runs
+          path: |
+            runs/
+            environment.txt
+          retention-days: 90
+      - name: Commit JSON results to results/pilot-v3-v4
+        if: always()
+        run: |
+          set -e
+          mkdir -p /tmp/out
+          if [ -d runs ]; then
+            (cd runs && find . -maxdepth 2 \( -name '*.json' -o -name '*.txt' \) -not -path '*/adapter/*' -not -path '*/checkpoints/*' -print0 | tar --null -cf /tmp/out/r.tar -T -)
+          fi
+          cp environment.txt /tmp/out/ 2>/dev/null || true
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin results/pilot-v3-v4 || true
+          if git rev-parse --verify -q origin/results/pilot-v3-v4 >/dev/null; then
+            git switch -c results-branch origin/results/pilot-v3-v4
+          else
+            git switch --orphan results-branch
+          fi
+          rm -rf "run-${GITHUB_RUN_ID}"
+          mkdir -p "run-${GITHUB_RUN_ID}"
+          if [ -f /tmp/out/r.tar ]; then tar -xf /tmp/out/r.tar -C "run-${GITHUB_RUN_ID}"; fi
+          cp /tmp/out/environment.txt "run-${GITHUB_RUN_ID}/" 2>/dev/null || true
+          printf 'Source commit: %s\nWorkflow run: %s/%s/actions/runs/%s\n' "$GITHUB_SHA" "$GITHUB_SERVER_URL" "$GITHUB_REPOSITORY" "$GITHUB_RUN_ID" > "run-${GITHUB_RUN_ID}/RUN.txt"
+          git add "run-${GITHUB_RUN_ID}"
+          git commit -m "Pilot v3/v4 outputs from workflow run ${GITHUB_RUN_ID}"
+          git push origin HEAD:results/pilot-v3-v4
