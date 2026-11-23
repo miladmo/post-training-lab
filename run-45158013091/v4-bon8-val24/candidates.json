@@ -1,0 +1,3011 @@
+[
+  {
+    "id": "hr_learning_session-1-1",
+    "role": "HR",
+    "family": "hr_learning_session",
+    "expected": {
+      "decision": "ready",
+      "missing": [],
+      "evidence_ids": [
+        "E1"
+      ]
+    },
+    "candidates": [
+      {
+        "completion": "{\"decision\":\"needs_review\",\"missing\":[\"learning_goal\"],\"evidence_ids\":[\"E1\"]}",
+        "rm_score": 0.0301705002784729,
+        "rule_reward": 0.5,
+        "canonical": "{\"decision\": \"needs_review\", \"evidence_ids\": [\"E1\"], \"missing\": [\"learning_goal\"]}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 1,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"needs_review\",\"missing\":[\"elaboration\"],\"evidence_ids\":[\"E1\"]}",
+        "rm_score": -0.07947393506765366,
+        "rule_reward": 0.5,
+        "canonical": "{\"decision\": \"needs_review\", \"evidence_ids\": [\"E1\"], \"missing\": [\"elaboration\"]}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 1,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"needs_review\",\"missing\":[\"hiring_window\"],\"evidence_ids\":[\"E1\"]}",
+        "rm_score": 0.06553712487220764,
+        "rule_reward": 0.5,
+        "canonical": "{\"decision\": \"needs_review\", \"evidence_ids\": [\"E1\"], \"missing\": [\"hiring_window\"]}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 1,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"ready\",\"missing\":[],\"evidence_ids\":[\"E1\"]}",
+        "rm_score": -0.002297639846801758,
+        "rule_reward": 1.0,
+        "canonical": "{\"decision\": \"ready\", \"evidence_ids\": [\"E1\"], \"missing\": []}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 1,
+          "missing_fields_exact": 1,
+          "evidence_exact": 1,
+          "task_success": 1
+        }
+      },
+      {
+        "completion": "{\"decision\":\"ready\",\"missing\":[],\"evidence_ids\":[\"E1\"]}",
+        "rm_score": -0.002297639846801758,
+        "rule_reward": 1.0,
+        "canonical": "{\"decision\": \"ready\", \"evidence_ids\": [\"E1\"], \"missing\": []}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 1,
+          "missing_fields_exact": 1,
+          "evidence_exact": 1,
+          "task_success": 1
+        }
+      },
+      {
+        "completion": "{\"decision\":\"ready\",\"missing\":[],\"evidence_ids\":[\"E1\"]}",
+        "rm_score": -0.002297639846801758,
+        "rule_reward": 1.0,
+        "canonical": "{\"decision\": \"ready\", \"evidence_ids\": [\"E1\"], \"missing\": []}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 1,
+          "missing_fields_exact": 1,
+          "evidence_exact": 1,
+          "task_success": 1
+        }
+      },
+      {
+        "completion": "{\"decision\":\"ready\",\"missing\":[],\"evidence_ids\":[\"E1\"]}",
+        "rm_score": -0.002297639846801758,
+        "rule_reward": 1.0,
+        "canonical": "{\"decision\": \"ready\", \"evidence_ids\": [\"E1\"], \"missing\": []}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 1,
+          "missing_fields_exact": 1,
+          "evidence_exact": 1,
+          "task_success": 1
+        }
+      },
+      {
+        "completion": "{\"decision\":\"needs_review\",\"missing\":[\"learning_goal\"],\"evidence_ids\":[\"E1\"]}",
+        "rm_score": 0.0301705002784729,
+        "rule_reward": 0.5,
+        "canonical": "{\"decision\": \"needs_review\", \"evidence_ids\": [\"E1\"], \"missing\": [\"learning_goal\"]}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 1,
+          "task_success": 0
+        }
+      }
+    ],
+    "selected": {
+      "first_sample": 0,
+      "majority_vote": 3,
+      "reward_model": 2,
+      "oracle": 3
+    }
+  },
+  {
+    "id": "sales_renewal_brief-1-1",
+    "role": "Sales",
+    "family": "sales_renewal_brief",
+    "expected": {
+      "decision": "ready",
+      "missing": [],
+      "evidence_ids": [
+        "E1"
+      ]
+    },
+    "candidates": [
+      {
+        "completion": "{\"decision\":\"ready\",\"missing\":[],\"evidence_ids\":[\"E1\"]}",
+        "rm_score": 0.09058551490306854,
+        "rule_reward": 1.0,
+        "canonical": "{\"decision\": \"ready\", \"evidence_ids\": [\"E1\"], \"missing\": []}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 1,
+          "missing_fields_exact": 1,
+          "evidence_exact": 1,
+          "task_success": 1
+        }
+      },
+      {
+        "completion": "{\"decision\":\"needs_review\",\"missing\":[\"renewal_date\"],\"evidence_ids\":[\"E1\"]}",
+        "rm_score": 0.15904760360717773,
+        "rule_reward": 0.5,
+        "canonical": "{\"decision\": \"needs_review\", \"evidence_ids\": [\"E1\"], \"missing\": [\"renewal_date\"]}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 1,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"needs_review\",\"missing\":[\"renewal_date\"],\"evidence_ids\":[\"E1\"]}",
+        "rm_score": 0.15904760360717773,
+        "rule_reward": 0.5,
+        "canonical": "{\"decision\": \"needs_review\", \"evidence_ids\": [\"E1\"], \"missing\": [\"renewal_date\"]}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 1,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"right\",\"missing\":[],\"evidence_ids\":[\"E1\",\"E2\",\"usage_summary\"]}",
+        "rm_score": 0.06977318972349167,
+        "rule_reward": 0.0,
+        "canonical": null,
+        "metrics": {
+          "schema_valid": 0,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"ready\",\"missing\":[\"renewal_date\"],\"evidence_ids\":[\"E2\"]}",
+        "rm_score": 0.03862343728542328,
+        "rule_reward": 0.5,
+        "canonical": "{\"decision\": \"ready\", \"evidence_ids\": [\"E2\"], \"missing\": [\"renewal_date\"]}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 1,
+          "missing_fields_exact": 0,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"ready\",\"missing\":[],\"evidence_ids\":[\"E1\"]}",
+        "rm_score": 0.09058551490306854,
+        "rule_reward": 1.0,
+        "canonical": "{\"decision\": \"ready\", \"evidence_ids\": [\"E1\"], \"missing\": []}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 1,
+          "missing_fields_exact": 1,
+          "evidence_exact": 1,
+          "task_success": 1
+        }
+      },
+      {
+        "completion": "{\"decision\":\"ready\",\"missing\":[],\"evidence_ids\":[\"E1\"]}",
+        "rm_score": 0.09058551490306854,
+        "rule_reward": 1.0,
+        "canonical": "{\"decision\": \"ready\", \"evidence_ids\": [\"E1\"], \"missing\": []}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 1,
+          "missing_fields_exact": 1,
+          "evidence_exact": 1,
+          "task_success": 1
+        }
+      },
+      {
+        "completion": "{\"decision\":\"ready\",\"missing\":[],\"evidence_ids\":[\"E1\",\"E2\"]}",
+        "rm_score": 0.016250748187303543,
+        "rule_reward": 0.9166666666666666,
+        "canonical": "{\"decision\": \"ready\", \"evidence_ids\": [\"E1\", \"E2\"], \"missing\": []}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 1,
+          "missing_fields_exact": 1,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      }
+    ],
+    "selected": {
+      "first_sample": 0,
+      "majority_vote": 0,
+      "reward_model": 1,
+      "oracle": 0
+    }
+  },
+  {
+    "id": "science_analysis_review-1-1",
+    "role": "Science",
+    "family": "science_analysis_review",
+    "expected": {
+      "decision": "ready",
+      "missing": [],
+      "evidence_ids": [
+        "E1"
+      ]
+    },
+    "candidates": [
+      {
+        "completion": "{\"decision\":\"needs_review\",\"missing\":[],\"evidence_ids\":[\"E1\"]}",
+        "rm_score": 0.41141462326049805,
+        "rule_reward": 0.75,
+        "canonical": "{\"decision\": \"needs_review\", \"evidence_ids\": [\"E1\"], \"missing\": []}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 0,
+          "missing_fields_exact": 1,
+          "evidence_exact": 1,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"needs_review\",\"missing\":[\"dataset_version\"],\"evidence_ids\":[\"E1\",\"E2\",\"analysis_script\"]}",
+        "rm_score": 0.3342054784297943,
+        "rule_reward": 0.375,
+        "canonical": "{\"decision\": \"needs_review\", \"evidence_ids\": [\"E1\", \"E2\", \"analysis_script\"], \"missing\": [\"dataset_version\"]}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"ready\",\"missing\":[],\"evidence_ids\":[\"E1\",\"E2\"],\"analysis_script\":{\"series\":[1],[2]},\"decisions\":[],\"required\":[\"DATASET\"],\"summary_R\":{\"series\":[1]},\"json_response\":{\"ready\":True,\"dev_timings\":0,\"kitcheniteard\":\"Missing\", \"Kidboard\":7,\"Meat-and-Bringup",
+        "rm_score": 0.5280393958091736,
+        "rule_reward": 0.0,
+        "canonical": null,
+        "metrics": {
+          "schema_valid": 0,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"ready\",\"missing\":[],\"evidence_ids\":[\"E1\",\"E2\"]}",
+        "rm_score": 0.315820574760437,
+        "rule_reward": 0.9166666666666666,
+        "canonical": "{\"decision\": \"ready\", \"evidence_ids\": [\"E1\", \"E2\"], \"missing\": []}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 1,
+          "missing_fields_exact": 1,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"needs_review\",\"missing\":[\"analysis_script\"],\"evidence_ids\":[\"E1\"]}",
+        "rm_score": 0.3981451988220215,
+        "rule_reward": 0.5,
+        "canonical": "{\"decision\": \"needs_review\", \"evidence_ids\": [\"E1\"], \"missing\": [\"analysis_script\"]}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 1,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"needs_review\",\"missing\":[\"analysis_script\"],\"evidence_ids\":[\"E2\"]}",
+        "rm_score": 0.42389345169067383,
+        "rule_reward": 0.25,
+        "canonical": "{\"decision\": \"needs_review\", \"evidence_ids\": [\"E2\"], \"missing\": [\"analysis_script\"]}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"needs_review\",\"missing\":[\"data_version\"],\"evidence_ids\":[\"E1\"]}",
+        "rm_score": 0.41926074028015137,
+        "rule_reward": 0.5,
+        "canonical": "{\"decision\": \"needs_review\", \"evidence_ids\": [\"E1\"], \"missing\": [\"data_version\"]}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 1,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"ready\",\"missing\":[],\"evidence_ids\":[\"E1\"],\"analysis_script\":{\"scree\":file_path},\"documents\":[.\"analysis_version4_master.Rweb\",.\"analysis_version5_master.Rweb\"]}",
+        "rm_score": 0.027550779283046722,
+        "rule_reward": 0.0,
+        "canonical": null,
+        "metrics": {
+          "schema_valid": 0,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      }
+    ],
+    "selected": {
+      "first_sample": 0,
+      "majority_vote": 0,
+      "reward_model": 2,
+      "oracle": 3
+    }
+  },
+  {
+    "id": "hr_learning_session-1-2",
+    "role": "HR",
+    "family": "hr_learning_session",
+    "expected": {
+      "decision": "needs_review",
+      "missing": [
+        "attendance_list"
+      ],
+      "evidence_ids": [
+        "E1"
+      ]
+    },
+    "candidates": [
+      {
+        "completion": "{\"decision\":\"needs_review\",\"missing\":[],\"evidence_ids\":[\"E1\",\"E2\"]}",
+        "rm_score": 0.0897451862692833,
+        "rule_reward": 0.6666666666666666,
+        "canonical": "{\"decision\": \"needs_review\", \"evidence_ids\": [\"E1\", \"E2\"], \"missing\": []}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 1,
+          "missing_fields_exact": 0,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"needs_review\",\"missing\":[\"learning_goal\"],\"evidence_ids\":[\"E1\"]}",
+        "rm_score": 0.06585931777954102,
+        "rule_reward": 0.75,
+        "canonical": "{\"decision\": \"needs_review\", \"evidence_ids\": [\"E1\"], \"missing\": [\"learning_goal\"]}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 1,
+          "missing_fields_exact": 0,
+          "evidence_exact": 1,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"needs_review\",\"missing\":[\"assist_active\"],\"evidence_ids\":[\"E1\"]}",
+        "rm_score": 0.01937515288591385,
+        "rule_reward": 0.75,
+        "canonical": "{\"decision\": \"needs_review\", \"evidence_ids\": [\"E1\"], \"missing\": [\"assist_active\"]}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 1,
+          "missing_fields_exact": 0,
+          "evidence_exact": 1,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"needs_review\",\"missing\":[\"learning_goal\"],\"evidence_ids\":[\"E1\"]}",
+        "rm_score": 0.06585931777954102,
+        "rule_reward": 0.75,
+        "canonical": "{\"decision\": \"needs_review\", \"evidence_ids\": [\"E1\"], \"missing\": [\"learning_goal\"]}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 1,
+          "missing_fields_exact": 0,
+          "evidence_exact": 1,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"ready\",\"missing\":[],\"evidence_ids\":[\"E1\",\"E2\"]}",
+        "rm_score": -0.05208325386047363,
+        "rule_reward": 0.41666666666666663,
+        "canonical": "{\"decision\": \"ready\", \"evidence_ids\": [\"E1\", \"E2\"], \"missing\": []}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"needs_review\",\"missing\":[],\"evidence_ids\":[\"E1\",\"E2\"]}",
+        "rm_score": 0.0897451862692833,
+        "rule_reward": 0.6666666666666666,
+        "canonical": "{\"decision\": \"needs_review\", \"evidence_ids\": [\"E1\", \"E2\"], \"missing\": []}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 1,
+          "missing_fields_exact": 0,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"ready\",\"missing\":[],\"evidence_ids\":[\"E1\",\"E2\"]}",
+        "rm_score": -0.05208325386047363,
+        "rule_reward": 0.41666666666666663,
+        "canonical": "{\"decision\": \"ready\", \"evidence_ids\": [\"E1\", \"E2\"], \"missing\": []}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"needs_review\",\"missing\":[\"learnings_goal\"],\"evidence_ids\":[\"E1\"]}",
+        "rm_score": 0.03686613589525223,
+        "rule_reward": 0.75,
+        "canonical": "{\"decision\": \"needs_review\", \"evidence_ids\": [\"E1\"], \"missing\": [\"learnings_goal\"]}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 1,
+          "missing_fields_exact": 0,
+          "evidence_exact": 1,
+          "task_success": 0
+        }
+      }
+    ],
+    "selected": {
+      "first_sample": 0,
+      "majority_vote": 0,
+      "reward_model": 0,
+      "oracle": 1
+    }
+  },
+  {
+    "id": "sales_renewal_brief-1-2",
+    "role": "Sales",
+    "family": "sales_renewal_brief",
+    "expected": {
+      "decision": "needs_review",
+      "missing": [
+        "account_contact"
+      ],
+      "evidence_ids": [
+        "E1"
+      ]
+    },
+    "candidates": [
+      {
+        "completion": "{\"decision\":\"needs_review\",\"missing\":[\"use_stations\"],\"evidence_ids\":[\"E1\"]}",
+        "rm_score": 0.057694435119628906,
+        "rule_reward": 0.75,
+        "canonical": "{\"decision\": \"needs_review\", \"evidence_ids\": [\"E1\"], \"missing\": [\"use_stations\"]}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 1,
+          "missing_fields_exact": 0,
+          "evidence_exact": 1,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"ready\",\"missing\":[],\"evidence_ids\":[\"A2\"]}",
+        "rm_score": -0.046879373490810394,
+        "rule_reward": 0.25,
+        "canonical": "{\"decision\": \"ready\", \"evidence_ids\": [\"A2\"], \"missing\": []}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"ready\",\"missing\":[],\"evidence_ids\":[\"E1\"]}",
+        "rm_score": 0.081324003636837,
+        "rule_reward": 0.5,
+        "canonical": "{\"decision\": \"ready\", \"evidence_ids\": [\"E1\"], \"missing\": []}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 1,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"needs_review\",\"missing\":[\"entertainment_summary\"],\"evidence_ids\":[\"E1\u201cLearning Center\u201d\"]}",
+        "rm_score": -0.1790865957736969,
+        "rule_reward": 0.5,
+        "canonical": "{\"decision\": \"needs_review\", \"evidence_ids\": [\"E1\\u201cLearning Center\\u201d\"], \"missing\": [\"entertainment_summary\"]}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 1,
+          "missing_fields_exact": 0,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"ready\",\"missing\":[],\"evidence_ids\":[\"E1\",\"E2\"]}",
+        "rm_score": 0.026271235197782516,
+        "rule_reward": 0.41666666666666663,
+        "canonical": "{\"decision\": \"ready\", \"evidence_ids\": [\"E1\", \"E2\"], \"missing\": []}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"activation\",\"missing\":[],\"evidence_ids\":[\"E1\"]}",
+        "rm_score": 0.008677840232849121,
+        "rule_reward": 0.0,
+        "canonical": null,
+        "metrics": {
+          "schema_valid": 0,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"ready\",\"missing\":[],\"evidence_ids\":[\"E1\"]}",
+        "rm_score": 0.081324003636837,
+        "rule_reward": 0.5,
+        "canonical": "{\"decision\": \"ready\", \"evidence_ids\": [\"E1\"], \"missing\": []}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 1,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"needs_review\",\"missing\":[\"vending_inventory\"],\"evidence_ids\":[\"E1\"]}",
+        "rm_score": 0.018396615982055664,
+        "rule_reward": 0.75,
+        "canonical": "{\"decision\": \"needs_review\", \"evidence_ids\": [\"E1\"], \"missing\": [\"vending_inventory\"]}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 1,
+          "missing_fields_exact": 0,
+          "evidence_exact": 1,
+          "task_success": 0
+        }
+      }
+    ],
+    "selected": {
+      "first_sample": 0,
+      "majority_vote": 2,
+      "reward_model": 2,
+      "oracle": 0
+    }
+  },
+  {
+    "id": "science_analysis_review-1-2",
+    "role": "Science",
+    "family": "science_analysis_review",
+    "expected": {
+      "decision": "needs_review",
+      "missing": [
+        "reviewer"
+      ],
+      "evidence_ids": [
+        "E1"
+      ]
+    },
+    "candidates": [
+      {
+        "completion": "{\"decision\":\"needs_review\",\"missing\":[\"dataset_version\"],\"evidence_ids\":[\"E1\",\"E2\"]},{\"evidence_ids\":[],\"idences\":[\"50\",\"100\",\"150\"]}",
+        "rm_score": 0.6532266139984131,
+        "rule_reward": 0.0,
+        "canonical": null,
+        "metrics": {
+          "schema_valid": 0,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"needs_review\",\"missing\":[\"dataset_version\"],\"evidence_ids\":[\"E1\",\"E2\"]}",
+        "rm_score": 0.44499778747558594,
+        "rule_reward": 0.6666666666666666,
+        "canonical": "{\"decision\": \"needs_review\", \"evidence_ids\": [\"E1\", \"E2\"], \"missing\": [\"dataset_version\"]}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 1,
+          "missing_fields_exact": 0,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"needs_review\",\"missing\":[\"analyzer_script\"],\"evidence_ids\":[\"E2\"]}",
+        "rm_score": 0.3630949556827545,
+        "rule_reward": 0.5,
+        "canonical": "{\"decision\": \"needs_review\", \"evidence_ids\": [\"E2\"], \"missing\": [\"analyzer_script\"]}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 1,
+          "missing_fields_exact": 0,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"ready\",\"missing\":[],\"evidence_ids\":[\"E1\"]}",
+        "rm_score": 0.36031031608581543,
+        "rule_reward": 0.5,
+        "canonical": "{\"decision\": \"ready\", \"evidence_ids\": [\"E1\"], \"missing\": []}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 1,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"needs_review\",\"missing\":[\"dataset_version\"],\"evidence_ids\":[\"E1\",\"E2\",\"analysis_script\"]}",
+        "rm_score": 0.30124759674072266,
+        "rule_reward": 0.625,
+        "canonical": "{\"decision\": \"needs_review\", \"evidence_ids\": [\"E1\", \"E2\", \"analysis_script\"], \"missing\": [\"dataset_version\"]}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 1,
+          "missing_fields_exact": 0,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"needs_review\",\"missing\":[\"dataset_version\"],\"evidence_ids\":[\"E1\",\"E2\"]}",
+        "rm_score": 0.44499778747558594,
+        "rule_reward": 0.6666666666666666,
+        "canonical": "{\"decision\": \"needs_review\", \"evidence_ids\": [\"E1\", \"E2\"], \"missing\": [\"dataset_version\"]}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 1,
+          "missing_fields_exact": 0,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"needs_review\",\"missing\":[\"analyzing_version\"],\"evidence_ids\":[\"E1\"]}",
+        "rm_score": 0.39849987626075745,
+        "rule_reward": 0.75,
+        "canonical": "{\"decision\": \"needs_review\", \"evidence_ids\": [\"E1\"], \"missing\": [\"analyzing_version\"]}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 1,
+          "missing_fields_exact": 0,
+          "evidence_exact": 1,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"ready\",\"missing\":[],\"evidence_ids\":[{\"dataset_name\":[\"RIE-1-5\"],\"analysis_script\":[\"summary.R.\"]}],\"needed_fields\":[{\"dataset_version\":4,\"researchtech_setup\":2}]}",
+        "rm_score": 0.08179999142885208,
+        "rule_reward": 0.0,
+        "canonical": null,
+        "metrics": {
+          "schema_valid": 0,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      }
+    ],
+    "selected": {
+      "first_sample": 0,
+      "majority_vote": 1,
+      "reward_model": 0,
+      "oracle": 6
+    }
+  },
+  {
+    "id": "hr_learning_session-2-1",
+    "role": "HR",
+    "family": "hr_learning_session",
+    "expected": {
+      "decision": "ready",
+      "missing": [],
+      "evidence_ids": [
+        "E3"
+      ]
+    },
+    "candidates": [
+      {
+        "completion": "{\"decision\":\"ready\",\"missing\":[],\"evidence_ids\":[\"E3\"]}",
+        "rm_score": -0.05306863784790039,
+        "rule_reward": 1.0,
+        "canonical": "{\"decision\": \"ready\", \"evidence_ids\": [\"E3\"], \"missing\": []}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 1,
+          "missing_fields_exact": 1,
+          "evidence_exact": 1,
+          "task_success": 1
+        }
+      },
+      {
+        "completion": "{\"decision\":\"ready\",\"missing\":[],\"evidence_ids\":[\"E1\",\"E3\",\"hiring_list\"]}",
+        "rm_score": -0.1272897720336914,
+        "rule_reward": 0.875,
+        "canonical": "{\"decision\": \"ready\", \"evidence_ids\": [\"E1\", \"E3\", \"hiring_list\"], \"missing\": []}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 1,
+          "missing_fields_exact": 1,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"ready\",\"missing\":[],\"evidence_ids\":[\"E3\"]}",
+        "rm_score": -0.05306863784790039,
+        "rule_reward": 1.0,
+        "canonical": "{\"decision\": \"ready\", \"evidence_ids\": [\"E3\"], \"missing\": []}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 1,
+          "missing_fields_exact": 1,
+          "evidence_exact": 1,
+          "task_success": 1
+        }
+      },
+      {
+        "completion": "{\"decision\":\"needs_review\",\"missing\":[\"incoming student\"],\"evidence_ids\":[\"E3\"]}",
+        "rm_score": -0.12110626697540283,
+        "rule_reward": 0.5,
+        "canonical": "{\"decision\": \"needs_review\", \"evidence_ids\": [\"E3\"], \"missing\": [\"incoming student\"]}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 1,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"ready\",\"missing\":[],\"evidence_ids\":[\"E1\",\"E3\"]}",
+        "rm_score": -0.17096757888793945,
+        "rule_reward": 0.9166666666666666,
+        "canonical": "{\"decision\": \"ready\", \"evidence_ids\": [\"E1\", \"E3\"], \"missing\": []}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 1,
+          "missing_fields_exact": 1,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"pending\",\"missing\":[],\"evidence_ids\":[\"E1\",\"E3\",\"E2\",\"E3\",\"E1\",\"E3\"]}",
+        "rm_score": -0.19079804420471191,
+        "rule_reward": 0.0,
+        "canonical": null,
+        "metrics": {
+          "schema_valid": 0,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"ready\",\"missing\":[],\"evidence_ids\":[\"E1\"]}",
+        "rm_score": -0.0533292293548584,
+        "rule_reward": 0.75,
+        "canonical": "{\"decision\": \"ready\", \"evidence_ids\": [\"E1\"], \"missing\": []}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 1,
+          "missing_fields_exact": 1,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"ready\",\"missing\":[\"learning_goal\"],\"evidence_ids\":[\"E3\"]}",
+        "rm_score": -0.21632766723632812,
+        "rule_reward": 0.75,
+        "canonical": "{\"decision\": \"ready\", \"evidence_ids\": [\"E3\"], \"missing\": [\"learning_goal\"]}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 1,
+          "missing_fields_exact": 0,
+          "evidence_exact": 1,
+          "task_success": 0
+        }
+      }
+    ],
+    "selected": {
+      "first_sample": 0,
+      "majority_vote": 0,
+      "reward_model": 0,
+      "oracle": 0
+    }
+  },
+  {
+    "id": "sales_renewal_brief-2-1",
+    "role": "Sales",
+    "family": "sales_renewal_brief",
+    "expected": {
+      "decision": "ready",
+      "missing": [],
+      "evidence_ids": [
+        "E3"
+      ]
+    },
+    "candidates": [
+      {
+        "completion": "{\"decision\":\"needs_review\",\"missing\":[\"account_contact\"],\"evidence_ids\":[],\"decision\":[\"ready\"]}",
+        "rm_score": 0.01756172999739647,
+        "rule_reward": 0.0,
+        "canonical": null,
+        "metrics": {
+          "schema_valid": 0,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"ready\",\"missing\":[],\"evidence_ids\":[\"E3\"]}",
+        "rm_score": 0.012962542474269867,
+        "rule_reward": 1.0,
+        "canonical": "{\"decision\": \"ready\", \"evidence_ids\": [\"E3\"], \"missing\": []}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 1,
+          "missing_fields_exact": 1,
+          "evidence_exact": 1,
+          "task_success": 1
+        }
+      },
+      {
+        "completion": "{\"decision\":\"needs_review\",\"missing\":[\"account_contact\"],\"evidence_ids\":[\"E1\"]}",
+        "rm_score": 0.11109041422605515,
+        "rule_reward": 0.25,
+        "canonical": "{\"decision\": \"needs_review\", \"evidence_ids\": [\"E1\"], \"missing\": [\"account_contact\"]}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"ready\",\"missing\":[],\"evidence_ids\":[\"E1\",\"E3\"]}",
+        "rm_score": -0.02218484878540039,
+        "rule_reward": 0.9166666666666666,
+        "canonical": "{\"decision\": \"ready\", \"evidence_ids\": [\"E1\", \"E3\"], \"missing\": []}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 1,
+          "missing_fields_exact": 1,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"ready\",\"missing\":[],\"evidence_ids\":[\"E3\"]}",
+        "rm_score": 0.012962542474269867,
+        "rule_reward": 1.0,
+        "canonical": "{\"decision\": \"ready\", \"evidence_ids\": [\"E3\"], \"missing\": []}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 1,
+          "missing_fields_exact": 1,
+          "evidence_exact": 1,
+          "task_success": 1
+        }
+      },
+      {
+        "completion": "{\"decision\":\"needs_review\",\"missing\":[\"account_contact\"],\"evidence_ids\":[\"E3\"]}",
+        "rm_score": 0.09170085191726685,
+        "rule_reward": 0.5,
+        "canonical": "{\"decision\": \"needs_review\", \"evidence_ids\": [\"E3\"], \"missing\": [\"account_contact\"]}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 1,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"ready\",\"missing\":[],\"evidence_ids\":[\"E1\"]}",
+        "rm_score": 0.04465510696172714,
+        "rule_reward": 0.75,
+        "canonical": "{\"decision\": \"ready\", \"evidence_ids\": [\"E1\"], \"missing\": []}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 1,
+          "missing_fields_exact": 1,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"needs_review\",\"missing\":[\"balancein\"],\"evidence_ids\":[\"E1\"]}",
+        "rm_score": -0.08084351569414139,
+        "rule_reward": 0.25,
+        "canonical": "{\"decision\": \"needs_review\", \"evidence_ids\": [\"E1\"], \"missing\": [\"balancein\"]}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      }
+    ],
+    "selected": {
+      "first_sample": 0,
+      "majority_vote": 1,
+      "reward_model": 2,
+      "oracle": 1
+    }
+  },
+  {
+    "id": "science_analysis_review-2-1",
+    "role": "Science",
+    "family": "science_analysis_review",
+    "expected": {
+      "decision": "ready",
+      "missing": [],
+      "evidence_ids": [
+        "E3"
+      ]
+    },
+    "candidates": [
+      {
+        "completion": "{\"decision\":\"needs_review\",\"missing\":[\"reviewer\"],\"evidence_ids\":[\"E1\"]}",
+        "rm_score": 0.20597156882286072,
+        "rule_reward": 0.25,
+        "canonical": "{\"decision\": \"needs_review\", \"evidence_ids\": [\"E1\"], \"missing\": [\"reviewer\"]}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"running\",\"missing\":[],\"evidence_ids\":[\"E3\"]}",
+        "rm_score": 0.16478703916072845,
+        "rule_reward": 0.0,
+        "canonical": null,
+        "metrics": {
+          "schema_valid": 0,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"team_review\",\"missing\":[],\"evidence_ids\":[\"E1\"]}",
+        "rm_score": -0.040599822998046875,
+        "rule_reward": 0.0,
+        "canonical": null,
+        "metrics": {
+          "schema_valid": 0,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"needs_review\",\"missing\":[\"analyzing_data\",\"reviewing_dataset_versions\"],\"evidence_ids\":[\"E1\"]}",
+        "rm_score": 0.09345602989196777,
+        "rule_reward": 0.25,
+        "canonical": "{\"decision\": \"needs_review\", \"evidence_ids\": [\"E1\"], \"missing\": [\"analyzing_data\", \"reviewing_dataset_versions\"]}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"finished\",\"missing\":[],\"evidence_ids\":[\"E1\",\"E3\"]}",
+        "rm_score": 0.08841059356927872,
+        "rule_reward": 0.0,
+        "canonical": null,
+        "metrics": {
+          "schema_valid": 0,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"ready\",\"missing\":[],\"evidence_ids\":[\"E3\"]}",
+        "rm_score": 0.17132899165153503,
+        "rule_reward": 1.0,
+        "canonical": "{\"decision\": \"ready\", \"evidence_ids\": [\"E3\"], \"missing\": []}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 1,
+          "missing_fields_exact": 1,
+          "evidence_exact": 1,
+          "task_success": 1
+        }
+      },
+      {
+        "completion": "{\"decision\":\"needs_review\",\"missing\":[\"Agency\"],\"evidence_ids\":[\"E1\"]}",
+        "rm_score": 0.10532478988170624,
+        "rule_reward": 0.25,
+        "canonical": "{\"decision\": \"needs_review\", \"evidence_ids\": [\"E1\"], \"missing\": [\"Agency\"]}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"needs_review\",\"missing\":[\"reviewer\"],\"evidence_ids\":[\"E3\"]}",
+        "rm_score": 0.2239426076412201,
+        "rule_reward": 0.5,
+        "canonical": "{\"decision\": \"needs_review\", \"evidence_ids\": [\"E3\"], \"missing\": [\"reviewer\"]}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 1,
+          "task_success": 0
+        }
+      }
+    ],
+    "selected": {
+      "first_sample": 0,
+      "majority_vote": 0,
+      "reward_model": 7,
+      "oracle": 5
+    }
+  },
+  {
+    "id": "hr_learning_session-2-2",
+    "role": "HR",
+    "family": "hr_learning_session",
+    "expected": {
+      "decision": "needs_review",
+      "missing": [
+        "facilitator"
+      ],
+      "evidence_ids": [
+        "E3"
+      ]
+    },
+    "candidates": [
+      {
+        "completion": "{\"decision\":\"prepared\",\"missing\":[],\"evidence_ids\":[\"E1\", \"E3\"]}",
+        "rm_score": -0.10026445239782333,
+        "rule_reward": 0.0,
+        "canonical": null,
+        "metrics": {
+          "schema_valid": 0,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"ready\",\"missing\":[],\"evidence_ids\":[\"E1\"]}",
+        "rm_score": -0.06186315044760704,
+        "rule_reward": 0.25,
+        "canonical": "{\"decision\": \"ready\", \"evidence_ids\": [\"E1\"], \"missing\": []}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"ready\",\"missing\":[],\"evidence_ids\":[\"E1\"],\"room_id\":\"88218697257503074D4B2D330B9244571B6F2E7\"],\"facilitator\":[\"1\",\"2\",\"3\",\"4\",\"five\",\"six\",\"seven\",\"eight\",\"nine\",\"ten\",\"eleven\",\"elew\",\"tw",
+        "rm_score": 1.440656304359436,
+        "rule_reward": 0.0,
+        "canonical": null,
+        "metrics": {
+          "schema_valid": 0,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"ready\",\"missing\":[],\"evidence_ids\":[\"E1\"]}",
+        "rm_score": -0.06186315044760704,
+        "rule_reward": 0.25,
+        "canonical": "{\"decision\": \"ready\", \"evidence_ids\": [\"E1\"], \"missing\": []}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"needs_review\",\"missing\":[\"facilitator\"],\"evidence_ids\":[\"E1\"]}",
+        "rm_score": -0.05764269828796387,
+        "rule_reward": 0.75,
+        "canonical": "{\"decision\": \"needs_review\", \"evidence_ids\": [\"E1\"], \"missing\": [\"facilitator\"]}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 1,
+          "missing_fields_exact": 1,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"needs_review\",\"missing\":[\"afcentrating\"],\"evidence_ids\":[\"E3\"]}",
+        "rm_score": -0.05825662612915039,
+        "rule_reward": 0.75,
+        "canonical": "{\"decision\": \"needs_review\", \"evidence_ids\": [\"E3\"], \"missing\": [\"afcentrating\"]}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 1,
+          "missing_fields_exact": 0,
+          "evidence_exact": 1,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"ready\",\"missing\":[],\"evidence_ids\":[\"E1\"]}",
+        "rm_score": -0.06186315044760704,
+        "rule_reward": 0.25,
+        "canonical": "{\"decision\": \"ready\", \"evidence_ids\": [\"E1\"], \"missing\": []}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"ready\",\"missing\":[],\"evidence_ids\":[\"E1\"]}",
+        "rm_score": -0.06186315044760704,
+        "rule_reward": 0.25,
+        "canonical": "{\"decision\": \"ready\", \"evidence_ids\": [\"E1\"], \"missing\": []}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      }
+    ],
+    "selected": {
+      "first_sample": 0,
+      "majority_vote": 1,
+      "reward_model": 2,
+      "oracle": 4
+    }
+  },
+  {
+    "id": "sales_renewal_brief-2-2",
+    "role": "Sales",
+    "family": "sales_renewal_brief",
+    "expected": {
+      "decision": "needs_review",
+      "missing": [
+        "usage_summary"
+      ],
+      "evidence_ids": [
+        "E3"
+      ]
+    },
+    "candidates": [
+      {
+        "completion": "{\"decision\":{\"needful\":[],[]},\"evidence_ids\":[],\"account_contact_id\":88,\"documentation\":{\"looking_forward\":{\"action\":\"needs_review\",\"thing\":\"jordan\",{\"detail\":\"jordan is the account contact.uggs_3325 for the final digit is 046634.__mo___8@jp@chnsa.com\"},{\"action\":\"needs_review\",\"",
+        "rm_score": 2.5248734951019287,
+        "rule_reward": 0.0,
+        "canonical": null,
+        "metrics": {
+          "schema_valid": 0,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"needs_review\",\"missing\":[\"usage_summary\"],\"evidence_ids\":[\"E3\"]}",
+        "rm_score": 0.07747726142406464,
+        "rule_reward": 1.0,
+        "canonical": "{\"decision\": \"needs_review\", \"evidence_ids\": [\"E3\"], \"missing\": [\"usage_summary\"]}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 1,
+          "missing_fields_exact": 1,
+          "evidence_exact": 1,
+          "task_success": 1
+        }
+      },
+      {
+        "completion": "{\"decision\":\"needs_review\",\"missing\":[],\"evidence_ids\":[\"E3\"]}",
+        "rm_score": 0.05755758285522461,
+        "rule_reward": 0.75,
+        "canonical": "{\"decision\": \"needs_review\", \"evidence_ids\": [\"E3\"], \"missing\": []}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 1,
+          "missing_fields_exact": 0,
+          "evidence_exact": 1,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"ready\",\"missing\":[],\"evidence_ids\":[\"E1\"]}",
+        "rm_score": 0.07936195284128189,
+        "rule_reward": 0.25,
+        "canonical": "{\"decision\": \"ready\", \"evidence_ids\": [\"E1\"], \"missing\": []}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"ready\",\"missing\":[],\"evidence_ids\":[\"E1\",\"E3\"]}",
+        "rm_score": 0.04056382179260254,
+        "rule_reward": 0.41666666666666663,
+        "canonical": "{\"decision\": \"ready\", \"evidence_ids\": [\"E1\", \"E3\"], \"missing\": []}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"ready\",\"missing\":[],\"evidence_ids\":[\"E1\"]}\"",
+        "rm_score": -0.6394941806793213,
+        "rule_reward": 0.0,
+        "canonical": null,
+        "metrics": {
+          "schema_valid": 0,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"needs_review\",\"missing\":[],\"evidence_ids\":[\"E1\"]}",
+        "rm_score": 0.08006620407104492,
+        "rule_reward": 0.5,
+        "canonical": "{\"decision\": \"needs_review\", \"evidence_ids\": [\"E1\"], \"missing\": []}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 1,
+          "missing_fields_exact": 0,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"ready\",\"missing\":[],\"evidence_ids\":[\"E1\", \"E2\"]}",
+        "rm_score": -0.04456673562526703,
+        "rule_reward": 0.25,
+        "canonical": "{\"decision\": \"ready\", \"evidence_ids\": [\"E1\", \"E2\"], \"missing\": []}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      }
+    ],
+    "selected": {
+      "first_sample": 0,
+      "majority_vote": 1,
+      "reward_model": 0,
+      "oracle": 1
+    }
+  },
+  {
+    "id": "science_analysis_review-2-2",
+    "role": "Science",
+    "family": "science_analysis_review",
+    "expected": {
+      "decision": "needs_review",
+      "missing": [
+        "analysis_script"
+      ],
+      "evidence_ids": [
+        "E3"
+      ]
+    },
+    "candidates": [
+      {
+        "completion": "{\"decision\":\"needs_review\",\"missing\":[\"analyte_script\"],\"evidence_ids\":[\"E1\"]}",
+        "rm_score": 0.255936861038208,
+        "rule_reward": 0.5,
+        "canonical": "{\"decision\": \"needs_review\", \"evidence_ids\": [\"E1\"], \"missing\": [\"analyte_script\"]}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 1,
+          "missing_fields_exact": 0,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"ready\",\"missing\":[],\"evidence_ids\":[\"E1\"]}",
+        "rm_score": 0.26688480377197266,
+        "rule_reward": 0.25,
+        "canonical": "{\"decision\": \"ready\", \"evidence_ids\": [\"E1\"], \"missing\": []}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"needs_review\",\"missing\":[\"reviewer\"],\"evidence_ids\":[\"E3\"]}",
+        "rm_score": 0.27858084440231323,
+        "rule_reward": 0.75,
+        "canonical": "{\"decision\": \"needs_review\", \"evidence_ids\": [\"E3\"], \"missing\": [\"reviewer\"]}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 1,
+          "missing_fields_exact": 0,
+          "evidence_exact": 1,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"needs_review\",\"missing\":[],\"evidence_ids\":[\"E1\",\"E3\"]}",
+        "rm_score": 0.3010828495025635,
+        "rule_reward": 0.6666666666666666,
+        "canonical": "{\"decision\": \"needs_review\", \"evidence_ids\": [\"E1\", \"E3\"], \"missing\": []}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 1,
+          "missing_fields_exact": 0,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"ready\",\"missing\":[],\"evidence_ids\":[\"E3\"]}",
+        "rm_score": 0.2965475916862488,
+        "rule_reward": 0.5,
+        "canonical": "{\"decision\": \"ready\", \"evidence_ids\": [\"E3\"], \"missing\": []}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 1,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"needs_review\",\"missing\":[\"defor_release\"],\"evidence_ids\":[\"E1\"]}",
+        "rm_score": 0.2783389091491699,
+        "rule_reward": 0.5,
+        "canonical": "{\"decision\": \"needs_review\", \"evidence_ids\": [\"E1\"], \"missing\": [\"defor_release\"]}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 1,
+          "missing_fields_exact": 0,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"ready\",\"missing\":[],\"evidence_ids\":[\"E1\"]}",
+        "rm_score": 0.26688480377197266,
+        "rule_reward": 0.25,
+        "canonical": "{\"decision\": \"ready\", \"evidence_ids\": [\"E1\"], \"missing\": []}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"needs_review\",\"match\":[],\"evidence\":{\"response\":{\"item\":E3,\"description\":\"Alex is assigned to review the analysis.\",\"title\":\"Review the analysis.\",\"version\":\"1.0\"},\"requirement\":{\"item\":E1,\"description\":\"Alex feels a little stumped about the data.\"},{\"item\":E1,\"description\":\"Alex wrote a response/response,\"},\"requirement\":{\"item\":E2,\"",
+        "rm_score": 4.199075222015381,
+        "rule_reward": 0.0,
+        "canonical": null,
+        "metrics": {
+          "schema_valid": 0,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      }
+    ],
+    "selected": {
+      "first_sample": 0,
+      "majority_vote": 1,
+      "reward_model": 7,
+      "oracle": 2
+    }
+  },
+  {
+    "id": "hr_learning_session-3-1",
+    "role": "HR",
+    "family": "hr_learning_session",
+    "expected": {
+      "decision": "ready",
+      "missing": [],
+      "evidence_ids": [
+        "E2",
+        "E3"
+      ]
+    },
+    "candidates": [
+      {
+        "completion": "{\"decision\":\"needs_review\",\"missing\":[\"alternates\"]}",
+        "rm_score": 0.0053459107875823975,
+        "rule_reward": 0.0,
+        "canonical": null,
+        "metrics": {
+          "schema_valid": 0,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"ready\",\"missing\":[],\"evidence_ids\":[\"E2\"]}",
+        "rm_score": -0.027128934860229492,
+        "rule_reward": 0.9166666666666666,
+        "canonical": "{\"decision\": \"ready\", \"evidence_ids\": [\"E2\"], \"missing\": []}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 1,
+          "missing_fields_exact": 1,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"needs_review\",\"missing\":[\"facilitator\",\"attendance_list\"],\"evidence_ids\":[\"E1\",\"E3\"]}",
+        "rm_score": -0.09516045451164246,
+        "rule_reward": 0.0,
+        "canonical": null,
+        "metrics": {
+          "schema_valid": 0,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"needs_review\",\"missing\":[\"facilitator\"],\"evidence_ids\":[\"E2\"]}",
+        "rm_score": -0.06829237937927246,
+        "rule_reward": 0.41666666666666663,
+        "canonical": "{\"decision\": \"needs_review\", \"evidence_ids\": [\"E2\"], \"missing\": [\"facilitator\"]}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"ready\",\"missing\":[],\"evidence_ids\":[\"E2\"]}",
+        "rm_score": -0.027128934860229492,
+        "rule_reward": 0.9166666666666666,
+        "canonical": "{\"decision\": \"ready\", \"evidence_ids\": [\"E2\"], \"missing\": []}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 1,
+          "missing_fields_exact": 1,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"planned\",\"missing\":[\"facilitator\"],\"evidence\":[\"E2\"]}",
+        "rm_score": -0.09180450439453125,
+        "rule_reward": 0.0,
+        "canonical": null,
+        "metrics": {
+          "schema_valid": 0,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"ready\",\"missing\":[],\"evidence_ids\":[\"E2\",\"E3\"]}",
+        "rm_score": -0.12246397137641907,
+        "rule_reward": 1.0,
+        "canonical": "{\"decision\": \"ready\", \"evidence_ids\": [\"E2\", \"E3\"], \"missing\": []}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 1,
+          "missing_fields_exact": 1,
+          "evidence_exact": 1,
+          "task_success": 1
+        }
+      },
+      {
+        "completion": "{\"decision\":\"ready\",\"missing\":[],\"evidence_ids\":[\"E2\",\"E3\"]}",
+        "rm_score": -0.12246397137641907,
+        "rule_reward": 1.0,
+        "canonical": "{\"decision\": \"ready\", \"evidence_ids\": [\"E2\", \"E3\"], \"missing\": []}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 1,
+          "missing_fields_exact": 1,
+          "evidence_exact": 1,
+          "task_success": 1
+        }
+      }
+    ],
+    "selected": {
+      "first_sample": 0,
+      "majority_vote": 1,
+      "reward_model": 0,
+      "oracle": 6
+    }
+  },
+  {
+    "id": "sales_renewal_brief-3-1",
+    "role": "Sales",
+    "family": "sales_renewal_brief",
+    "expected": {
+      "decision": "ready",
+      "missing": [],
+      "evidence_ids": [
+        "E2",
+        "E3"
+      ]
+    },
+    "candidates": [
+      {
+        "completion": "{\"decision\":\"needs_review\",\"missing\":[\"usage_summary\"],\"evidence_ids\":[\"E2\"]}",
+        "rm_score": 0.04169496148824692,
+        "rule_reward": 0.41666666666666663,
+        "canonical": "{\"decision\": \"needs_review\", \"evidence_ids\": [\"E2\"], \"missing\": [\"usage_summary\"]}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"needs_review\",\"missing\":[],\"evidence_ids\":[\"E2\",\"E3\"]}",
+        "rm_score": 0.06426016241312027,
+        "rule_reward": 0.75,
+        "canonical": "{\"decision\": \"needs_review\", \"evidence_ids\": [\"E2\", \"E3\"], \"missing\": []}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 0,
+          "missing_fields_exact": 1,
+          "evidence_exact": 1,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"yup\",\"missing\":[],\"evidence_ids\":[\"E2\",\"E3\",\"accounts\"]}",
+        "rm_score": -0.06999778747558594,
+        "rule_reward": 0.0,
+        "canonical": null,
+        "metrics": {
+          "schema_valid": 0,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"needs_review\",\"missing\":[\"presence_16\"],\"evidence_ids\":[\"E2\"]}",
+        "rm_score": -0.04462742805480957,
+        "rule_reward": 0.41666666666666663,
+        "canonical": "{\"decision\": \"needs_review\", \"evidence_ids\": [\"E2\"], \"missing\": [\"presence_16\"]}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"ready\",\"missing\":[],\"evidence_ids\":[\"E2\"]}",
+        "rm_score": 0.025951620191335678,
+        "rule_reward": 0.9166666666666666,
+        "canonical": "{\"decision\": \"ready\", \"evidence_ids\": [\"E2\"], \"missing\": []}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 1,
+          "missing_fields_exact": 1,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"scores\",\"missing\":[],\"evidence_ids\":[\"E2\"]}",
+        "rm_score": -0.05554642528295517,
+        "rule_reward": 0.0,
+        "canonical": null,
+        "metrics": {
+          "schema_valid": 0,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"needs_review\",\"missing\":[\"usage_summary\"],\"evidence_ids\":[\"E2\"]}",
+        "rm_score": 0.04169496148824692,
+        "rule_reward": 0.41666666666666663,
+        "canonical": "{\"decision\": \"needs_review\", \"evidence_ids\": [\"E2\"], \"missing\": [\"usage_summary\"]}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"ready\",\"missing\":[],\"evidence_ids\":[\"E2\"]}",
+        "rm_score": 0.025951620191335678,
+        "rule_reward": 0.9166666666666666,
+        "canonical": "{\"decision\": \"ready\", \"evidence_ids\": [\"E2\"], \"missing\": []}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 1,
+          "missing_fields_exact": 1,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      }
+    ],
+    "selected": {
+      "first_sample": 0,
+      "majority_vote": 0,
+      "reward_model": 1,
+      "oracle": 4
+    }
+  },
+  {
+    "id": "science_analysis_review-3-1",
+    "role": "Science",
+    "family": "science_analysis_review",
+    "expected": {
+      "decision": "ready",
+      "missing": [],
+      "evidence_ids": [
+        "E2",
+        "E3"
+      ]
+    },
+    "candidates": [
+      {
+        "completion": "{\"decision\":\"needs_review\",\"missing\":[\"reviewer\"],\"evidence_ids\":[\"E2\"]}",
+        "rm_score": 0.2676122784614563,
+        "rule_reward": 0.41666666666666663,
+        "canonical": "{\"decision\": \"needs_review\", \"evidence_ids\": [\"E2\"], \"missing\": [\"reviewer\"]}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"ready\",\"missing\":[],\"evidence_ids\":[\"E2\",\"E3\"]}",
+        "rm_score": 0.17686963081359863,
+        "rule_reward": 1.0,
+        "canonical": "{\"decision\": \"ready\", \"evidence_ids\": [\"E2\", \"E3\"], \"missing\": []}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 1,
+          "missing_fields_exact": 1,
+          "evidence_exact": 1,
+          "task_success": 1
+        }
+      },
+      {
+        "completion": "{\"decision\":\"needs_workout\",\"missing\":[\"analysis_script\"],\"evidence_ids\":[\"E2\"]}",
+        "rm_score": 0.16745948791503906,
+        "rule_reward": 0.0,
+        "canonical": null,
+        "metrics": {
+          "schema_valid": 0,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"ready\",\"missing\":[]}",
+        "rm_score": -0.13321352005004883,
+        "rule_reward": 0.0,
+        "canonical": null,
+        "metrics": {
+          "schema_valid": 0,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"needs_evaluations\",\"missing\":[\"grid_nulls_nulls\"],\"evidence_ids\":[\"E2\", \"E3\"]}",
+        "rm_score": 0.24298763275146484,
+        "rule_reward": 0.0,
+        "canonical": null,
+        "metrics": {
+          "schema_valid": 0,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"ready\",\"missing\":[],\"evidence_ids\":[\"E2\",\"E3\"]}",
+        "rm_score": 0.17686963081359863,
+        "rule_reward": 1.0,
+        "canonical": "{\"decision\": \"ready\", \"evidence_ids\": [\"E2\", \"E3\"], \"missing\": []}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 1,
+          "missing_fields_exact": 1,
+          "evidence_exact": 1,
+          "task_success": 1
+        }
+      },
+      {
+        "completion": "{\"decision\":\"ready\",\"missing\":[],\"evidence_ids\":[\"E1\"]}",
+        "rm_score": 0.2115827202796936,
+        "rule_reward": 0.75,
+        "canonical": "{\"decision\": \"ready\", \"evidence_ids\": [\"E1\"], \"missing\": []}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 1,
+          "missing_fields_exact": 1,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"needs_review\",\"missing\":[\"reviewer\"],\"evidence_ids\":[\"E2\"]}",
+        "rm_score": 0.2676122784614563,
+        "rule_reward": 0.41666666666666663,
+        "canonical": "{\"decision\": \"needs_review\", \"evidence_ids\": [\"E2\"], \"missing\": [\"reviewer\"]}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      }
+    ],
+    "selected": {
+      "first_sample": 0,
+      "majority_vote": 0,
+      "reward_model": 0,
+      "oracle": 1
+    }
+  },
+  {
+    "id": "hr_learning_session-3-2",
+    "role": "HR",
+    "family": "hr_learning_session",
+    "expected": {
+      "decision": "needs_review",
+      "missing": [
+        "learning_goal"
+      ],
+      "evidence_ids": [
+        "E2",
+        "E3"
+      ]
+    },
+    "candidates": [
+      {
+        "completion": "{\"decision\":\"ready\",\"missing\":[],\"evidence_ids\":[\"E3\"]}",
+        "rm_score": 0.02418351173400879,
+        "rule_reward": 0.41666666666666663,
+        "canonical": "{\"decision\": \"ready\", \"evidence_ids\": [\"E3\"], \"missing\": []}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"##WillAnalyze\", \"missing\":[\"learning_goal\", \"facilitator\"],\"evidence_ids\":[\"E2\",\"E3\",\"E4\",\"E5\",\"E6\",\"E7\",\"E8\",\"E9\",\"E10\",\"E11\",\"E12\",\"E13\",\"E14\",\"E15\",\"E16\",\"E17\",\"E18\",\"E19\",\"E20\",\"E",
+        "rm_score": 3.376340389251709,
+        "rule_reward": 0.0,
+        "canonical": null,
+        "metrics": {
+          "schema_valid": 0,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"ready\",\"missing\":[],\"evidence_ids\":[\"E2\",\"E3\"]}",
+        "rm_score": -0.007084578275680542,
+        "rule_reward": 0.5,
+        "canonical": "{\"decision\": \"ready\", \"evidence_ids\": [\"E2\", \"E3\"], \"missing\": []}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 1,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"ready\",\"missing\":[],\"evidence_ids\":[\"E2\",\"E3\"]}",
+        "rm_score": -0.007084578275680542,
+        "rule_reward": 0.5,
+        "canonical": "{\"decision\": \"ready\", \"evidence_ids\": [\"E2\", \"E3\"], \"missing\": []}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 1,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"ready\",\"missing\":[{\"json\":[\"E2\",\"R7\",\"facilitator\",\"SUEND\",\"assigned\",\"FAILED\",\"not_the_first_time\",\"not_the_first_time\",\"finishing\",\"outstanding\",\"not_the_first_time\",\"fine\",\"cardifullings\",\"good_fitness\",\"good_library\",\"not_the_project\",\"end_of_project\",\"overseen\",\"attending\",\"need",
+        "rm_score": 2.1414122581481934,
+        "rule_reward": 0.0,
+        "canonical": null,
+        "metrics": {
+          "schema_valid": 0,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"needs_review\",\"missing\":[\"learning_goal\"],\"evidence_ids\":[\"E2\",\"E3\",\"learning_goal\"]}",
+        "rm_score": 0.022538185119628906,
+        "rule_reward": 0.95,
+        "canonical": "{\"decision\": \"needs_review\", \"evidence_ids\": [\"E2\", \"E3\", \"learning_goal\"], \"missing\": [\"learning_goal\"]}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 1,
+          "missing_fields_exact": 1,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"ready\",\"missing\":[],\"evidence_ids\":[1,3,4,6],\"facilitator\":2,\"facilitators\":[1,3,4],\"accommodates\":2,\"dates\":false,\"allow_sessions\":false,\"ids\":5,[2,6]]}",
+        "rm_score": -0.19637751579284668,
+        "rule_reward": 0.0,
+        "canonical": null,
+        "metrics": {
+          "schema_valid": 0,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"needs_review\",\"missing\":[\"facilitator\", \"teen\",\"teen\"],\"evidence_ids\":[\"E2\", \"E3\"]}",
+        "rm_score": -0.10318298637866974,
+        "rule_reward": 0.0,
+        "canonical": null,
+        "metrics": {
+          "schema_valid": 0,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      }
+    ],
+    "selected": {
+      "first_sample": 0,
+      "majority_vote": 2,
+      "reward_model": 1,
+      "oracle": 5
+    }
+  },
+  {
+    "id": "sales_renewal_brief-3-2",
+    "role": "Sales",
+    "family": "sales_renewal_brief",
+    "expected": {
+      "decision": "needs_review",
+      "missing": [
+        "renewal_date"
+      ],
+      "evidence_ids": [
+        "E2",
+        "E3"
+      ]
+    },
+    "candidates": [
+      {
+        "completion": "{\"decision\":\"needs_review\",\"missing\":[\"renewal_date\"],\"evidence_ids\":[\"E1\"]}",
+        "rm_score": 0.07734322547912598,
+        "rule_reward": 0.75,
+        "canonical": "{\"decision\": \"needs_review\", \"evidence_ids\": [\"E1\"], \"missing\": [\"renewal_date\"]}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 1,
+          "missing_fields_exact": 1,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"needs_review\",\"missing\":[\"renewal_date\"],\"evidence_ids\":[\"E2\"]}",
+        "rm_score": 0.09859061241149902,
+        "rule_reward": 0.9166666666666666,
+        "canonical": "{\"decision\": \"needs_review\", \"evidence_ids\": [\"E2\"], \"missing\": [\"renewal_date\"]}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 1,
+          "missing_fields_exact": 1,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"needs_review\",\"missing\":[\"renewal_date\"],\"evidence_ids\":[\"E1\", \"E2\", \"E3\"]}",
+        "rm_score": 0.04743623733520508,
+        "rule_reward": 0.95,
+        "canonical": "{\"decision\": \"needs_review\", \"evidence_ids\": [\"E1\", \"E2\", \"E3\"], \"missing\": [\"renewal_date\"]}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 1,
+          "missing_fields_exact": 1,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"ready\",\"missing\":[],\"evidence_ids\":[\"E2\",\"E3\"]}",
+        "rm_score": 0.024904727935791016,
+        "rule_reward": 0.5,
+        "canonical": "{\"decision\": \"ready\", \"evidence_ids\": [\"E2\", \"E3\"], \"missing\": []}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 1,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"ready\",\"missing\":[],\"evidence_ids\":[\"E2\",\"E3\"]}",
+        "rm_score": 0.024904727935791016,
+        "rule_reward": 0.5,
+        "canonical": "{\"decision\": \"ready\", \"evidence_ids\": [\"E2\", \"E3\"], \"missing\": []}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 1,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"ready\",\"missing\":[],\"evidence_ids\":[\"E2\",\"E3\"]}",
+        "rm_score": 0.024904727935791016,
+        "rule_reward": 0.5,
+        "canonical": "{\"decision\": \"ready\", \"evidence_ids\": [\"E2\", \"E3\"], \"missing\": []}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 1,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"needs_review\",\"missing\":[\"renewal_date\"],\"evidence_ids\":[\"E2\"]}",
+        "rm_score": 0.09859061241149902,
+        "rule_reward": 0.9166666666666666,
+        "canonical": "{\"decision\": \"needs_review\", \"evidence_ids\": [\"E2\"], \"missing\": [\"renewal_date\"]}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 1,
+          "missing_fields_exact": 1,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"justifications\",\"availability_id\":\"00000000\",\"reasoning\":\"investor_profiles\"}",
+        "rm_score": -0.3959285616874695,
+        "rule_reward": 0.0,
+        "canonical": null,
+        "metrics": {
+          "schema_valid": 0,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      }
+    ],
+    "selected": {
+      "first_sample": 0,
+      "majority_vote": 3,
+      "reward_model": 1,
+      "oracle": 2
+    }
+  },
+  {
+    "id": "science_analysis_review-3-2",
+    "role": "Science",
+    "family": "science_analysis_review",
+    "expected": {
+      "decision": "needs_review",
+      "missing": [
+        "dataset_version"
+      ],
+      "evidence_ids": [
+        "E2",
+        "E3"
+      ]
+    },
+    "candidates": [
+      {
+        "completion": "{\"decision\":\"need_review\",\"missing\":[],\"evidence_ids\":[\"E2\",\"E3\"]}",
+        "rm_score": 0.29364198446273804,
+        "rule_reward": 0.0,
+        "canonical": null,
+        "metrics": {
+          "schema_valid": 0,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"needs_review\",\"missing\":[\"dataset_version\"],\"evidence_ids\":[\"E3\"]}",
+        "rm_score": 0.35212793946266174,
+        "rule_reward": 0.9166666666666666,
+        "canonical": "{\"decision\": \"needs_review\", \"evidence_ids\": [\"E3\"], \"missing\": [\"dataset_version\"]}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 1,
+          "missing_fields_exact": 1,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"needs_review\",\"missing\":[\"reviewer\"],\"evidence_ids\":[\"E3\"]}",
+        "rm_score": 0.36282825469970703,
+        "rule_reward": 0.6666666666666666,
+        "canonical": "{\"decision\": \"needs_review\", \"evidence_ids\": [\"E3\"], \"missing\": [\"reviewer\"]}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 1,
+          "missing_fields_exact": 0,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"steps\",\"missing\":[],\"evidence_ids\":[\"E2\",\"E3\"]}",
+        "rm_score": 0.4160451889038086,
+        "rule_reward": 0.0,
+        "canonical": null,
+        "metrics": {
+          "schema_valid": 0,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"ready\",\"missing\":[],\"evidence_ids\":[\"E2\",\"E3\",\"analysis_script\",\"evaluationUSD\",\"awesome\"]}",
+        "rm_score": -0.03330855071544647,
+        "rule_reward": 0.0,
+        "canonical": null,
+        "metrics": {
+          "schema_valid": 0,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"ready\",\"missing\":[],\"evidence_ids\":[\"E2\",\"E3\",\"reviewer\",\"X\"]}",
+        "rm_score": 0.2955482006072998,
+        "rule_reward": 0.0,
+        "canonical": null,
+        "metrics": {
+          "schema_valid": 0,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"ready\",\"missing\":[],\"evidence_ids\":[\"E2\"],\"analysis_script\":\"Summary Review\"}\"",
+        "rm_score": -0.4346022605895996,
+        "rule_reward": 0.0,
+        "canonical": null,
+        "metrics": {
+          "schema_valid": 0,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"needs_review\",\"missing\":[\"dataset_version\"],\"evidence_ids\":[\"E2\", \"E3\"]}",
+        "rm_score": 0.37780535221099854,
+        "rule_reward": 1.0,
+        "canonical": "{\"decision\": \"needs_review\", \"evidence_ids\": [\"E2\", \"E3\"], \"missing\": [\"dataset_version\"]}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 1,
+          "missing_fields_exact": 1,
+          "evidence_exact": 1,
+          "task_success": 1
+        }
+      }
+    ],
+    "selected": {
+      "first_sample": 0,
+      "majority_vote": 1,
+      "reward_model": 3,
+      "oracle": 7
+    }
+  },
+  {
+    "id": "hr_learning_session-4-1",
+    "role": "HR",
+    "family": "hr_learning_session",
+    "expected": {
+      "decision": "ready",
+      "missing": [],
+      "evidence_ids": [
+        "E1"
+      ]
+    },
+    "candidates": [
+      {
+        "completion": "{\"decision\":\"needs_review\",\"missing\":[\"learning_goal\"],\"evidence_ids\":[\"E1\"]}",
+        "rm_score": 0.0054571181535720825,
+        "rule_reward": 0.5,
+        "canonical": "{\"decision\": \"needs_review\", \"evidence_ids\": [\"E1\"], \"missing\": [\"learning_goal\"]}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 1,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"ready\",\"missing\":[],\"evidence_ids\":[\"E1\"]}",
+        "rm_score": -0.022357024252414703,
+        "rule_reward": 1.0,
+        "canonical": "{\"decision\": \"ready\", \"evidence_ids\": [\"E1\"], \"missing\": []}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 1,
+          "missing_fields_exact": 1,
+          "evidence_exact": 1,
+          "task_success": 1
+        }
+      },
+      {
+        "completion": "{\"decision\":\"needs_review\",\"missing\":[\"learning_goal\"],\"evidence_ids\":[\"E1\"]}",
+        "rm_score": 0.0054571181535720825,
+        "rule_reward": 0.5,
+        "canonical": "{\"decision\": \"needs_review\", \"evidence_ids\": [\"E1\"], \"missing\": [\"learning_goal\"]}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 1,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"ready\",\"missing\":[],\"evidence_ids\":[\"E1\"]}",
+        "rm_score": -0.022357024252414703,
+        "rule_reward": 1.0,
+        "canonical": "{\"decision\": \"ready\", \"evidence_ids\": [\"E1\"], \"missing\": []}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 1,
+          "missing_fields_exact": 1,
+          "evidence_exact": 1,
+          "task_success": 1
+        }
+      },
+      {
+        "completion": "{\"decision\":\"needs_review\",\"missing\":[\"hiring_window\"],\"evidence_ids\":[\"E1\"]}",
+        "rm_score": 0.04045724868774414,
+        "rule_reward": 0.5,
+        "canonical": "{\"decision\": \"needs_review\", \"evidence_ids\": [\"E1\"], \"missing\": [\"hiring_window\"]}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 1,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"needs_review\",\"missing\":[\"learning_goal\"],\"evidence_ids\":[\"E1\"]}",
+        "rm_score": 0.0054571181535720825,
+        "rule_reward": 0.5,
+        "canonical": "{\"decision\": \"needs_review\", \"evidence_ids\": [\"E1\"], \"missing\": [\"learning_goal\"]}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 1,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"needs_review\",\"missing\":[\"learning_goal\"],\"evidence_ids\":[\"E1\"]}",
+        "rm_score": 0.0054571181535720825,
+        "rule_reward": 0.5,
+        "canonical": "{\"decision\": \"needs_review\", \"evidence_ids\": [\"E1\"], \"missing\": [\"learning_goal\"]}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 1,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"needs_review\",\"missing\":[],\"evidence_ids\":[\"E1\"]}",
+        "rm_score": -0.013947010040283203,
+        "rule_reward": 0.75,
+        "canonical": "{\"decision\": \"needs_review\", \"evidence_ids\": [\"E1\"], \"missing\": []}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 0,
+          "missing_fields_exact": 1,
+          "evidence_exact": 1,
+          "task_success": 0
+        }
+      }
+    ],
+    "selected": {
+      "first_sample": 0,
+      "majority_vote": 0,
+      "reward_model": 4,
+      "oracle": 1
+    }
+  },
+  {
+    "id": "sales_renewal_brief-4-1",
+    "role": "Sales",
+    "family": "sales_renewal_brief",
+    "expected": {
+      "decision": "ready",
+      "missing": [],
+      "evidence_ids": [
+        "E1"
+      ]
+    },
+    "candidates": [
+      {
+        "completion": "{\"decision\":\"needs_review\",\"missing\":[],\"evidence_ids\":[\"E1\"]}",
+        "rm_score": 0.03312530741095543,
+        "rule_reward": 0.75,
+        "canonical": "{\"decision\": \"needs_review\", \"evidence_ids\": [\"E1\"], \"missing\": []}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 0,
+          "missing_fields_exact": 1,
+          "evidence_exact": 1,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\",\"needs_review\",\"missing\":[],\"evidence_ids\":\"RE90\"}",
+        "rm_score": -0.5597424507141113,
+        "rule_reward": 0.0,
+        "canonical": null,
+        "metrics": {
+          "schema_valid": 0,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"ready\",\"missing\":[],\"evidence_ids\":[\"E1\"]}",
+        "rm_score": 0.011224508285522461,
+        "rule_reward": 1.0,
+        "canonical": "{\"decision\": \"ready\", \"evidence_ids\": [\"E1\"], \"missing\": []}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 1,
+          "missing_fields_exact": 1,
+          "evidence_exact": 1,
+          "task_success": 1
+        }
+      },
+      {
+        "completion": "{\"decision\":\"ready\",\"missing\":[],\"evidence_ids\":[\"E1\"]}",
+        "rm_score": 0.011224508285522461,
+        "rule_reward": 1.0,
+        "canonical": "{\"decision\": \"ready\", \"evidence_ids\": [\"E1\"], \"missing\": []}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 1,
+          "missing_fields_exact": 1,
+          "evidence_exact": 1,
+          "task_success": 1
+        }
+      },
+      {
+        "completion": "{\"decision\":\"needs_contest\",\"missing\":[\"renewal_date\"],\"evidence_ids\":[\"E1\"]}",
+        "rm_score": -0.0020879432559013367,
+        "rule_reward": 0.0,
+        "canonical": null,
+        "metrics": {
+          "schema_valid": 0,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"ready\",\"missing\":[],\"evidence_ids\":[\"E1\"]}",
+        "rm_score": 0.011224508285522461,
+        "rule_reward": 1.0,
+        "canonical": "{\"decision\": \"ready\", \"evidence_ids\": [\"E1\"], \"missing\": []}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 1,
+          "missing_fields_exact": 1,
+          "evidence_exact": 1,
+          "task_success": 1
+        }
+      },
+      {
+        "completion": "{\"decision\":\"ready\",\"missing\":\"FINAL\"}",
+        "rm_score": -0.45132654905319214,
+        "rule_reward": 0.0,
+        "canonical": null,
+        "metrics": {
+          "schema_valid": 0,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"ready\",\"missing\":[],\"evidence_ids\":[\"E2\"]}",
+        "rm_score": -0.048387765884399414,
+        "rule_reward": 0.75,
+        "canonical": "{\"decision\": \"ready\", \"evidence_ids\": [\"E2\"], \"missing\": []}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 1,
+          "missing_fields_exact": 1,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      }
+    ],
+    "selected": {
+      "first_sample": 0,
+      "majority_vote": 2,
+      "reward_model": 0,
+      "oracle": 2
+    }
+  },
+  {
+    "id": "science_analysis_review-4-1",
+    "role": "Science",
+    "family": "science_analysis_review",
+    "expected": {
+      "decision": "ready",
+      "missing": [],
+      "evidence_ids": [
+        "E1"
+      ]
+    },
+    "candidates": [
+      {
+        "completion": "{\"decision\":\"ready\",\"missing\":[],\"evidence_ids\":[\"E1\"]}",
+        "rm_score": 0.266634464263916,
+        "rule_reward": 1.0,
+        "canonical": "{\"decision\": \"ready\", \"evidence_ids\": [\"E1\"], \"missing\": []}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 1,
+          "missing_fields_exact": 1,
+          "evidence_exact": 1,
+          "task_success": 1
+        }
+      },
+      {
+        "completion": "{\"decision\":\"loading\",\"missing\":[\"dataset_version\"],\"evidence_ids\":[\"E1\"]}",
+        "rm_score": 0.25076350569725037,
+        "rule_reward": 0.0,
+        "canonical": null,
+        "metrics": {
+          "schema_valid": 0,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"needs_review\",\"missing\":[],\"evidence_ids\":[\"E1\"]}",
+        "rm_score": 0.27045607566833496,
+        "rule_reward": 0.75,
+        "canonical": "{\"decision\": \"needs_review\", \"evidence_ids\": [\"E1\"], \"missing\": []}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 0,
+          "missing_fields_exact": 1,
+          "evidence_exact": 1,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"ready\",\"missing\":[],\"evidence_ids\":[\"E1\",\"E2\",\"E3\",\"E4\",\"E5\"]}",
+        "rm_score": 0.08932603895664215,
+        "rule_reward": 0.8333333333333334,
+        "canonical": "{\"decision\": \"ready\", \"evidence_ids\": [\"E1\", \"E2\", \"E3\", \"E4\", \"E5\"], \"missing\": []}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 1,
+          "missing_fields_exact": 1,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"needs_review\",\"missing\":[\"dataset_version\"],\"evidence_ids\":[\"E1\"]}",
+        "rm_score": 0.3114960193634033,
+        "rule_reward": 0.5,
+        "canonical": "{\"decision\": \"needs_review\", \"evidence_ids\": [\"E1\"], \"missing\": [\"dataset_version\"]}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 1,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"requeued\",\"missing\":\"surname\"}",
+        "rm_score": -0.5266857147216797,
+        "rule_reward": 0.0,
+        "canonical": null,
+        "metrics": {
+          "schema_valid": 0,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"ready\",\"missing\":[],\"evidence_ids\":[\"E1\"]}",
+        "rm_score": 0.266634464263916,
+        "rule_reward": 1.0,
+        "canonical": "{\"decision\": \"ready\", \"evidence_ids\": [\"E1\"], \"missing\": []}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 1,
+          "missing_fields_exact": 1,
+          "evidence_exact": 1,
+          "task_success": 1
+        }
+      },
+      {
+        "completion": "{\"decision\":\"needs_review\",\"missing\":[],\"evidence_ids\":[\"E1\",\"E2\",\"E3\"]}",
+        "rm_score": 0.2645730972290039,
+        "rule_reward": 0.625,
+        "canonical": "{\"decision\": \"needs_review\", \"evidence_ids\": [\"E1\", \"E2\", \"E3\"], \"missing\": []}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 0,
+          "missing_fields_exact": 1,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      }
+    ],
+    "selected": {
+      "first_sample": 0,
+      "majority_vote": 0,
+      "reward_model": 4,
+      "oracle": 0
+    }
+  },
+  {
+    "id": "hr_learning_session-4-2",
+    "role": "HR",
+    "family": "hr_learning_session",
+    "expected": {
+      "decision": "needs_review",
+      "missing": [
+        "attendance_list",
+        "facilitator"
+      ],
+      "evidence_ids": [
+        "E1"
+      ]
+    },
+    "candidates": [
+      {
+        "completion": "{\"decision\":\"ready\",\"missing\":[],\"evidence_ids\":[\"E1\"]}",
+        "rm_score": 0.026315927505493164,
+        "rule_reward": 0.5,
+        "canonical": "{\"decision\": \"ready\", \"evidence_ids\": [\"E1\"], \"missing\": []}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 1,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"needs_review\",\"missing\":[\"favature\",\"\"],\"evidence_ids\":[\"E1\",\"E2\",\"E3\",\"E5\",\"E6\",\"E7\",\"E8\",\"E9\",\"E10\",\"E11\",\"E12\",\"E13\",\"E14\",\"E15\",\"E16\",\"E17\",\"E18\",\"E19\",\"E20\",\"E21\",\"E2",
+        "rm_score": 1.4016859531402588,
+        "rule_reward": 0.0,
+        "canonical": null,
+        "metrics": {
+          "schema_valid": 0,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"in_voc_recharge_responses\",\"missing\":\"audience\",\"evidence_ids\":[\"E1\"]}\"",
+        "rm_score": -0.7186620235443115,
+        "rule_reward": 0.0,
+        "canonical": null,
+        "metrics": {
+          "schema_valid": 0,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"needs_review\",\"missing\":[\"facilitator\"],\"evidence_ids\":[\"E1\"]}",
+        "rm_score": -0.02642679214477539,
+        "rule_reward": 0.9166666666666666,
+        "canonical": "{\"decision\": \"needs_review\", \"evidence_ids\": [\"E1\"], \"missing\": [\"facilitator\"]}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 1,
+          "missing_fields_exact": 0,
+          "evidence_exact": 1,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"ready\",\"missing\":[],\"evidence_ids\":[\"E1\"]}",
+        "rm_score": 0.026315927505493164,
+        "rule_reward": 0.5,
+        "canonical": "{\"decision\": \"ready\", \"evidence_ids\": [\"E1\"], \"missing\": []}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 1,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"needs_review\",\"missing\":[\"facilitator\"],\"evidence_ids\":[\"E1\"]}",
+        "rm_score": -0.02642679214477539,
+        "rule_reward": 0.9166666666666666,
+        "canonical": "{\"decision\": \"needs_review\", \"evidence_ids\": [\"E1\"], \"missing\": [\"facilitator\"]}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 1,
+          "missing_fields_exact": 0,
+          "evidence_exact": 1,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"ready\",\"missing\":[],\"evidence_ids\":[\"E1\"]}",
+        "rm_score": 0.026315927505493164,
+        "rule_reward": 0.5,
+        "canonical": "{\"decision\": \"ready\", \"evidence_ids\": [\"E1\"], \"missing\": []}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 1,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"needs_review\", \"missing\":[\"salary_reward\",\"staff\"]}",
+        "rm_score": 0.013673782348632812,
+        "rule_reward": 0.0,
+        "canonical": null,
+        "metrics": {
+          "schema_valid": 0,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      }
+    ],
+    "selected": {
+      "first_sample": 0,
+      "majority_vote": 0,
+      "reward_model": 1,
+      "oracle": 3
+    }
+  },
+  {
+    "id": "sales_renewal_brief-4-2",
+    "role": "Sales",
+    "family": "sales_renewal_brief",
+    "expected": {
+      "decision": "needs_review",
+      "missing": [
+        "account_contact",
+        "usage_summary"
+      ],
+      "evidence_ids": [
+        "E1"
+      ]
+    },
+    "candidates": [
+      {
+        "completion": "{\"decision\":\"needs_review\",\"working_decision\":[\"req\",\"hard\",\"cand\",\"default\",\"hrs\",\"encategory\",\"age\",\"creation_date\",\"status\",\"provider\",\"description\",\"contacts\",\"source\",\"num_ref\",\"expire_date\",\"expire_time\",\"details\",\"phones\",\"am_id\",\"recnum\",\"budget\",\"prov\",\"dro\",\"contact\",\"waiting\",\"updated\",\"funded\",\"phone_numbers\",\"waiting_confirmed\",\"full_name\",\"",
+        "rm_score": 1.5239146947860718,
+        "rule_reward": 0.0,
+        "canonical": null,
+        "metrics": {
+          "schema_valid": 0,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"ready\",\"missing\":[],\"evidence_ids\":[\"E1\",\"E2\",\"E3\",\"E4\",\"E5\",\"E6\",\"E7\",\"E8\",\"E9\",\"E10\",\"E21\",\"E32\",\"E43\",\"E54\",\"E65\",\"E76\",\"E88\",\"E5e9\",\"E7f1\",\"E3f1\",\"E3b1\",\"E5",
+        "rm_score": 2.6111252307891846,
+        "rule_reward": 0.0,
+        "canonical": null,
+        "metrics": {
+          "schema_valid": 0,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"ready\",\"missing\":[],\"evidence_ids\":[\"E1\"]}",
+        "rm_score": 0.11806344985961914,
+        "rule_reward": 0.5,
+        "canonical": "{\"decision\": \"ready\", \"evidence_ids\": [\"E1\"], \"missing\": []}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 1,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"needs_review\",\"missing\":[\"renewal_date\"],\"evidence_ids\":[\"E1\"]}",
+        "rm_score": 0.16649043560028076,
+        "rule_reward": 0.75,
+        "canonical": "{\"decision\": \"needs_review\", \"evidence_ids\": [\"E1\"], \"missing\": [\"renewal_date\"]}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 1,
+          "missing_fields_exact": 0,
+          "evidence_exact": 1,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"needs_review\",\"missing\":[\"usage_summary\"],\"evidence_ids\":[\"E1\"]}",
+        "rm_score": 0.0376896858215332,
+        "rule_reward": 0.9166666666666666,
+        "canonical": "{\"decision\": \"needs_review\", \"evidence_ids\": [\"E1\"], \"missing\": [\"usage_summary\"]}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 1,
+          "missing_fields_exact": 0,
+          "evidence_exact": 1,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"allows\",\"missing\":[],\"evidence_ids\":[\"E1\"]}",
+        "rm_score": 0.0020532608032226562,
+        "rule_reward": 0.0,
+        "canonical": null,
+        "metrics": {
+          "schema_valid": 0,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"ready\",\"missing\":[],\"evidence_ids\":[\"E1\"]}",
+        "rm_score": 0.11806344985961914,
+        "rule_reward": 0.5,
+        "canonical": "{\"decision\": \"ready\", \"evidence_ids\": [\"E1\"], \"missing\": []}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 1,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"needs_review\",\"missing\":[\"renewal_date\"],\"evidence_ids\":[\"E1\"]}",
+        "rm_score": 0.16649043560028076,
+        "rule_reward": 0.75,
+        "canonical": "{\"decision\": \"needs_review\", \"evidence_ids\": [\"E1\"], \"missing\": [\"renewal_date\"]}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 1,
+          "missing_fields_exact": 0,
+          "evidence_exact": 1,
+          "task_success": 0
+        }
+      }
+    ],
+    "selected": {
+      "first_sample": 0,
+      "majority_vote": 2,
+      "reward_model": 1,
+      "oracle": 4
+    }
+  },
+  {
+    "id": "science_analysis_review-4-2",
+    "role": "Science",
+    "family": "science_analysis_review",
+    "expected": {
+      "decision": "needs_review",
+      "missing": [
+        "analysis_script",
+        "reviewer"
+      ],
+      "evidence_ids": [
+        "E1"
+      ]
+    },
+    "candidates": [
+      {
+        "completion": "{\"decision\":\"needs_review\",\"missing\":[\"analysis_script\",\"analyst_name\"],\"evidence_ids\":[\"E1\",\"E2\",\"analyst_name\"]}",
+        "rm_score": 0.1622397005558014,
+        "rule_reward": 0.75,
+        "canonical": "{\"decision\": \"needs_review\", \"evidence_ids\": [\"E1\", \"E2\", \"analyst_name\"], \"missing\": [\"analysis_script\", \"analyst_name\"]}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 1,
+          "missing_fields_exact": 0,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"needs_review\",\"missing\":[\"analysis_script\"],\"evidence_ids\":[\"E1\"]}",
+        "rm_score": 0.2475310117006302,
+        "rule_reward": 0.9166666666666666,
+        "canonical": "{\"decision\": \"needs_review\", \"evidence_ids\": [\"E1\"], \"missing\": [\"analysis_script\"]}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 1,
+          "missing_fields_exact": 0,
+          "evidence_exact": 1,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"needs_review\",\"missing\":[\"analysis_script\"],\"evidence_ids\":[\"E1\"]}",
+        "rm_score": 0.2475310117006302,
+        "rule_reward": 0.9166666666666666,
+        "canonical": "{\"decision\": \"needs_review\", \"evidence_ids\": [\"E1\"], \"missing\": [\"analysis_script\"]}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 1,
+          "missing_fields_exact": 0,
+          "evidence_exact": 1,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"need_review\",\"missing\":\"update\",\"evidence_ids\":[],\"relevant_web\":[],\"review_script\":{\"doc_id\":4913266,\"signature\":null,\"date\":null,\"authority\":null,\"subauthority\":null,\"authority\":null,\"action\":null,\"inception_url\":\"/?schema-version=generic-manifest,json,asset,\"metadata\":\"S3_Metadata programmed",
+        "rm_score": 1.987687349319458,
+        "rule_reward": 0.0,
+        "canonical": null,
+        "metrics": {
+          "schema_valid": 0,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"needs_review\",\"missing\":\"E1\",\"evidence_ids\":\"E1\",\"4\":{\"httpgov\":1.0,\"overlydata\":False,\"satisfaction\":\"few\",\"consents\":\"strong\",\"surveyCounter\":\"15373\",\"save\":\"y\"},{\"description\":\"\"}}",
+        "rm_score": 0.6599658131599426,
+        "rule_reward": 0.0,
+        "canonical": null,
+        "metrics": {
+          "schema_valid": 0,
+          "decision_correct": 0,
+          "missing_fields_exact": 0,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"needs_review\",\"missing\":[\"analyst\"],\"evidence_ids\":[\"E1\",\"E2\"]}",
+        "rm_score": 0.26462793350219727,
+        "rule_reward": 0.6666666666666666,
+        "canonical": "{\"decision\": \"needs_review\", \"evidence_ids\": [\"E1\", \"E2\"], \"missing\": [\"analyst\"]}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 1,
+          "missing_fields_exact": 0,
+          "evidence_exact": 0,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"needs_review\",\"missing\":[\"analysis_script\"],\"evidence_ids\":[\"E1\"]}",
+        "rm_score": 0.2475310117006302,
+        "rule_reward": 0.9166666666666666,
+        "canonical": "{\"decision\": \"needs_review\", \"evidence_ids\": [\"E1\"], \"missing\": [\"analysis_script\"]}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 1,
+          "missing_fields_exact": 0,
+          "evidence_exact": 1,
+          "task_success": 0
+        }
+      },
+      {
+        "completion": "{\"decision\":\"needs_review\",\"missing\":[\"analysis_script\"],\"evidence_ids\":[\"E1\"]}",
+        "rm_score": 0.2475310117006302,
+        "rule_reward": 0.9166666666666666,
+        "canonical": "{\"decision\": \"needs_review\", \"evidence_ids\": [\"E1\"], \"missing\": [\"analysis_script\"]}",
+        "metrics": {
+          "schema_valid": 1,
+          "decision_correct": 1,
+          "missing_fields_exact": 0,
+          "evidence_exact": 1,
+          "task_success": 0
+        }
+      }
+    ],
+    "selected": {
+      "first_sample": 0,
+      "majority_vote": 1,
+      "reward_model": 3,
+      "oracle": 1
+    }
+  }
+]
