@@ -1,0 +1,587 @@
+[
+  {
+    "id": "hr_learning_session-1-1",
+    "role": "HR",
+    "family": "hr_learning_session",
+    "prompt_sha256": "e786fb03f88f76b3aa050523a107e2c3806767e25a9262d7ee31f8fe33d5f4ac",
+    "expected": {
+      "decision": "ready",
+      "missing": [],
+      "evidence_ids": [
+        "E1"
+      ]
+    },
+    "completion": "{\"decision\":\"ready\",\"missing\":[],\"evidence_ids\":[\"E1\"]}",
+    "metrics": {
+      "schema_valid": 1,
+      "decision_correct": 1,
+      "missing_fields_exact": 1,
+      "evidence_exact": 1,
+      "task_success": 1
+    },
+    "new_tokens": 20,
+    "seconds": 1.1213995350000232
+  },
+  {
+    "id": "sales_renewal_brief-1-1",
+    "role": "Sales",
+    "family": "sales_renewal_brief",
+    "prompt_sha256": "bd102ac7ff2696fd37e25502b44522e896f8f065a1b823002f1bf0c292072417",
+    "expected": {
+      "decision": "ready",
+      "missing": [],
+      "evidence_ids": [
+        "E1"
+      ]
+    },
+    "completion": "{\"decision\":\"ready\",\"missing\":[],\"evidence_ids\":[\"E1\"]}",
+    "metrics": {
+      "schema_valid": 1,
+      "decision_correct": 1,
+      "missing_fields_exact": 1,
+      "evidence_exact": 1,
+      "task_success": 1
+    },
+    "new_tokens": 20,
+    "seconds": 1.1819161139999892
+  },
+  {
+    "id": "science_analysis_review-1-1",
+    "role": "Science",
+    "family": "science_analysis_review",
+    "prompt_sha256": "fcdf2546a20b894dd1393bf1d28b6787efaca89eb13eb5936e850c1e63b1cc55",
+    "expected": {
+      "decision": "ready",
+      "missing": [],
+      "evidence_ids": [
+        "E1"
+      ]
+    },
+    "completion": "{\"decision\":\"needs_review\",\"missing\":[\"dataset_version\"],\"evidence_ids\":[\"E1\"]}",
+    "metrics": {
+      "schema_valid": 1,
+      "decision_correct": 0,
+      "missing_fields_exact": 0,
+      "evidence_exact": 1,
+      "task_success": 0
+    },
+    "new_tokens": 25,
+    "seconds": 1.355890187
+  },
+  {
+    "id": "hr_learning_session-1-2",
+    "role": "HR",
+    "family": "hr_learning_session",
+    "prompt_sha256": "08951a15124eb62a9c60528a42977665ba707b21bd552e0a8ca31831281fe389",
+    "expected": {
+      "decision": "needs_review",
+      "missing": [
+        "attendance_list"
+      ],
+      "evidence_ids": [
+        "E1"
+      ]
+    },
+    "completion": "{\"decision\":\"needs_review\",\"missing\":[\"learning_goal\"],\"evidence_ids\":[\"E1\"]}",
+    "metrics": {
+      "schema_valid": 1,
+      "decision_correct": 1,
+      "missing_fields_exact": 0,
+      "evidence_exact": 1,
+      "task_success": 0
+    },
+    "new_tokens": 25,
+    "seconds": 1.3187371770000027
+  },
+  {
+    "id": "sales_renewal_brief-1-2",
+    "role": "Sales",
+    "family": "sales_renewal_brief",
+    "prompt_sha256": "0eb4d90ec0a0509092a27de516e6da0b2bdca42bd9556cf8cf18df1dd8220567",
+    "expected": {
+      "decision": "needs_review",
+      "missing": [
+        "account_contact"
+      ],
+      "evidence_ids": [
+        "E1"
+      ]
+    },
+    "completion": "{\"decision\":\"ready\",\"missing\":[],\"evidence_ids\":[\"E1\"]}",
+    "metrics": {
+      "schema_valid": 1,
+      "decision_correct": 0,
+      "missing_fields_exact": 0,
+      "evidence_exact": 1,
+      "task_success": 0
+    },
+    "new_tokens": 20,
+    "seconds": 1.135060923000026
+  },
+  {
+    "id": "science_analysis_review-1-2",
+    "role": "Science",
+    "family": "science_analysis_review",
+    "prompt_sha256": "c37ef167c6fef60c5a4ea3d94ba892860302d064976f9bbccffdb513d07dda36",
+    "expected": {
+      "decision": "needs_review",
+      "missing": [
+        "reviewer"
+      ],
+      "evidence_ids": [
+        "E1"
+      ]
+    },
+    "completion": "{\"decision\":\"needs_review\",\"missing\":[\"dataset_version\"],\"evidence_ids\":[\"E1\"]}",
+    "metrics": {
+      "schema_valid": 1,
+      "decision_correct": 1,
+      "missing_fields_exact": 0,
+      "evidence_exact": 1,
+      "task_success": 0
+    },
+    "new_tokens": 25,
+    "seconds": 1.408443205000026
+  },
+  {
+    "id": "hr_learning_session-2-1",
+    "role": "HR",
+    "family": "hr_learning_session",
+    "prompt_sha256": "428861a82a3884f6f97a29baff24414c6db98077ff31e82dd294316b575e8fd0",
+    "expected": {
+      "decision": "ready",
+      "missing": [],
+      "evidence_ids": [
+        "E3"
+      ]
+    },
+    "completion": "{\"decision\":\"ready\",\"missing\":[],\"evidence_ids\":[\"E1\"]}",
+    "metrics": {
+      "schema_valid": 1,
+      "decision_correct": 1,
+      "missing_fields_exact": 1,
+      "evidence_exact": 0,
+      "task_success": 0
+    },
+    "new_tokens": 20,
+    "seconds": 1.2092604950000236
+  },
+  {
+    "id": "sales_renewal_brief-2-1",
+    "role": "Sales",
+    "family": "sales_renewal_brief",
+    "prompt_sha256": "46425758e1eb72b623518d8d9f29e063a9e0daddf319a58dffba0e7a34da611e",
+    "expected": {
+      "decision": "ready",
+      "missing": [],
+      "evidence_ids": [
+        "E3"
+      ]
+    },
+    "completion": "{\"decision\":\"ready\",\"missing\":[],\"evidence_ids\":[\"E1\"]}",
+    "metrics": {
+      "schema_valid": 1,
+      "decision_correct": 1,
+      "missing_fields_exact": 1,
+      "evidence_exact": 0,
+      "task_success": 0
+    },
+    "new_tokens": 20,
+    "seconds": 1.1532777350000174
+  },
+  {
+    "id": "science_analysis_review-2-1",
+    "role": "Science",
+    "family": "science_analysis_review",
+    "prompt_sha256": "a1edd50b22688e8ab7f6c6f8dde4f87f01346500ffb274be68a764a8bac98195",
+    "expected": {
+      "decision": "ready",
+      "missing": [],
+      "evidence_ids": [
+        "E3"
+      ]
+    },
+    "completion": "{\"decision\":\"ready\",\"missing\":[],\"evidence_ids\":[\"E1\"]}",
+    "metrics": {
+      "schema_valid": 1,
+      "decision_correct": 1,
+      "missing_fields_exact": 1,
+      "evidence_exact": 0,
+      "task_success": 0
+    },
+    "new_tokens": 20,
+    "seconds": 1.1510054990000071
+  },
+  {
+    "id": "hr_learning_session-2-2",
+    "role": "HR",
+    "family": "hr_learning_session",
+    "prompt_sha256": "09548f3d3cddbd4e99ff3dec58f661f551d7e4aa9f4b746b3f73f803e1174190",
+    "expected": {
+      "decision": "needs_review",
+      "missing": [
+        "facilitator"
+      ],
+      "evidence_ids": [
+        "E3"
+      ]
+    },
+    "completion": "{\"decision\":\"ready\",\"missing\":[],\"evidence_ids\":[\"E1\"]}",
+    "metrics": {
+      "schema_valid": 1,
+      "decision_correct": 0,
+      "missing_fields_exact": 0,
+      "evidence_exact": 0,
+      "task_success": 0
+    },
+    "new_tokens": 20,
+    "seconds": 1.1507354299999975
+  },
+  {
+    "id": "sales_renewal_brief-2-2",
+    "role": "Sales",
+    "family": "sales_renewal_brief",
+    "prompt_sha256": "46952d44c1cb8eb524b8d419b0ed447dfb548dbadc3093848f7d3a8fa8c02b07",
+    "expected": {
+      "decision": "needs_review",
+      "missing": [
+        "usage_summary"
+      ],
+      "evidence_ids": [
+        "E3"
+      ]
+    },
+    "completion": "{\"decision\":\"needs_review\",\"missing\":[\"usage_summary\"],\"evidence_ids\":[\"E1\"]}",
+    "metrics": {
+      "schema_valid": 1,
+      "decision_correct": 1,
+      "missing_fields_exact": 1,
+      "evidence_exact": 0,
+      "task_success": 0
+    },
+    "new_tokens": 25,
+    "seconds": 1.309758880000004
+  },
+  {
+    "id": "science_analysis_review-2-2",
+    "role": "Science",
+    "family": "science_analysis_review",
+    "prompt_sha256": "f6da0ab6c8d75101c81df8d92c030a94c0fc43144797e0f54178b7177dc8df7b",
+    "expected": {
+      "decision": "needs_review",
+      "missing": [
+        "analysis_script"
+      ],
+      "evidence_ids": [
+        "E3"
+      ]
+    },
+    "completion": "{\"decision\":\"needs_review\",\"missing\":[\"analysis_script\"],\"evidence_ids\":[\"E1\"]}",
+    "metrics": {
+      "schema_valid": 1,
+      "decision_correct": 1,
+      "missing_fields_exact": 1,
+      "evidence_exact": 0,
+      "task_success": 0
+    },
+    "new_tokens": 25,
+    "seconds": 1.308121347999986
+  },
+  {
+    "id": "hr_learning_session-3-1",
+    "role": "HR",
+    "family": "hr_learning_session",
+    "prompt_sha256": "bae7dba3f00d0149c8914e892505c162c7dd57be9b2af51724561e811813551a",
+    "expected": {
+      "decision": "ready",
+      "missing": [],
+      "evidence_ids": [
+        "E2",
+        "E3"
+      ]
+    },
+    "completion": "{\"decision\":\"ready\",\"missing\":[],\"evidence_ids\":[\"E2\",\"E3\"]}",
+    "metrics": {
+      "schema_valid": 1,
+      "decision_correct": 1,
+      "missing_fields_exact": 1,
+      "evidence_exact": 1,
+      "task_success": 1
+    },
+    "new_tokens": 23,
+    "seconds": 1.2428955650000262
+  },
+  {
+    "id": "sales_renewal_brief-3-1",
+    "role": "Sales",
+    "family": "sales_renewal_brief",
+    "prompt_sha256": "8237c4782acff7d8dad585e9c81f72808f72c1598b4079e0d8f2771fbf46efbc",
+    "expected": {
+      "decision": "ready",
+      "missing": [],
+      "evidence_ids": [
+        "E2",
+        "E3"
+      ]
+    },
+    "completion": "{\"decision\":\"needs_review\",\"missing\":[\"usage_summary\"],\"evidence_ids\":[\"E2\"]}",
+    "metrics": {
+      "schema_valid": 1,
+      "decision_correct": 0,
+      "missing_fields_exact": 0,
+      "evidence_exact": 0,
+      "task_success": 0
+    },
+    "new_tokens": 25,
+    "seconds": 1.5439784540000119
+  },
+  {
+    "id": "science_analysis_review-3-1",
+    "role": "Science",
+    "family": "science_analysis_review",
+    "prompt_sha256": "3d793321f0171a7d74ccd4099a97601e8951be89de653792a581359e8c56c7bc",
+    "expected": {
+      "decision": "ready",
+      "missing": [],
+      "evidence_ids": [
+        "E2",
+        "E3"
+      ]
+    },
+    "completion": "{\"decision\":\"needs_review\",\"missing\":[\"reviewer\"],\"evidence_ids\":[\"E2\"]}",
+    "metrics": {
+      "schema_valid": 1,
+      "decision_correct": 0,
+      "missing_fields_exact": 0,
+      "evidence_exact": 0,
+      "task_success": 0
+    },
+    "new_tokens": 24,
+    "seconds": 1.2710160699999733
+  },
+  {
+    "id": "hr_learning_session-3-2",
+    "role": "HR",
+    "family": "hr_learning_session",
+    "prompt_sha256": "a28fd32b16494fb24d97892fad344798369b98f222fc70c9e76d46c16ee906ce",
+    "expected": {
+      "decision": "needs_review",
+      "missing": [
+        "learning_goal"
+      ],
+      "evidence_ids": [
+        "E2",
+        "E3"
+      ]
+    },
+    "completion": "{\"decision\":\"needs_review\",\"missing\":[\"facilitator\"],\"evidence_ids\":[\"E2\"]}",
+    "metrics": {
+      "schema_valid": 1,
+      "decision_correct": 1,
+      "missing_fields_exact": 0,
+      "evidence_exact": 0,
+      "task_success": 0
+    },
+    "new_tokens": 25,
+    "seconds": 1.2777367280000362
+  },
+  {
+    "id": "sales_renewal_brief-3-2",
+    "role": "Sales",
+    "family": "sales_renewal_brief",
+    "prompt_sha256": "57df5a69aafb23c018e794604f1f4c1b70fd8d368a9f6d444f792219d9a57566",
+    "expected": {
+      "decision": "needs_review",
+      "missing": [
+        "renewal_date"
+      ],
+      "evidence_ids": [
+        "E2",
+        "E3"
+      ]
+    },
+    "completion": "{\"decision\":\"needs_review\",\"missing\":[\"renewal_date\"],\"evidence_ids\":[\"E2\"]}",
+    "metrics": {
+      "schema_valid": 1,
+      "decision_correct": 1,
+      "missing_fields_exact": 1,
+      "evidence_exact": 0,
+      "task_success": 0
+    },
+    "new_tokens": 26,
+    "seconds": 1.3827371090000042
+  },
+  {
+    "id": "science_analysis_review-3-2",
+    "role": "Science",
+    "family": "science_analysis_review",
+    "prompt_sha256": "6a4fbd9e25424e15ecb52542c6b79f87fd08aa82ceedd6ad8e9c0454dec52368",
+    "expected": {
+      "decision": "needs_review",
+      "missing": [
+        "dataset_version"
+      ],
+      "evidence_ids": [
+        "E2",
+        "E3"
+      ]
+    },
+    "completion": "{\"decision\":\"needs_review\",\"missing\":[\"analysis_script\"],\"evidence_ids\":[\"E2\",\"E3\"]}",
+    "metrics": {
+      "schema_valid": 1,
+      "decision_correct": 1,
+      "missing_fields_exact": 0,
+      "evidence_exact": 1,
+      "task_success": 0
+    },
+    "new_tokens": 28,
+    "seconds": 1.525828625000031
+  },
+  {
+    "id": "hr_learning_session-4-1",
+    "role": "HR",
+    "family": "hr_learning_session",
+    "prompt_sha256": "b2878c957143322d91fbce41fb20d609858c07d7258b25791e56e37cc2dc921f",
+    "expected": {
+      "decision": "ready",
+      "missing": [],
+      "evidence_ids": [
+        "E1"
+      ]
+    },
+    "completion": "{\"decision\":\"ready\",\"missing\":[],\"evidence_ids\":[\"E1\"]}",
+    "metrics": {
+      "schema_valid": 1,
+      "decision_correct": 1,
+      "missing_fields_exact": 1,
+      "evidence_exact": 1,
+      "task_success": 1
+    },
+    "new_tokens": 20,
+    "seconds": 1.1017548660000216
+  },
+  {
+    "id": "sales_renewal_brief-4-1",
+    "role": "Sales",
+    "family": "sales_renewal_brief",
+    "prompt_sha256": "190609c770941f998ad5c233cd7264998c194f4f85d4ad2164159377710b403d",
+    "expected": {
+      "decision": "ready",
+      "missing": [],
+      "evidence_ids": [
+        "E1"
+      ]
+    },
+    "completion": "{\"decision\":\"ready\",\"missing\":[],\"evidence_ids\":[\"E1\"]}",
+    "metrics": {
+      "schema_valid": 1,
+      "decision_correct": 1,
+      "missing_fields_exact": 1,
+      "evidence_exact": 1,
+      "task_success": 1
+    },
+    "new_tokens": 20,
+    "seconds": 1.1205764110000018
+  },
+  {
+    "id": "science_analysis_review-4-1",
+    "role": "Science",
+    "family": "science_analysis_review",
+    "prompt_sha256": "8ca55792516d94b5b39c0bccfbb8ea79f8da355c00f2cc99fa096301fdead515",
+    "expected": {
+      "decision": "ready",
+      "missing": [],
+      "evidence_ids": [
+        "E1"
+      ]
+    },
+    "completion": "{\"decision\":\"ready\",\"missing\":[],\"evidence_ids\":[\"E1\"]}",
+    "metrics": {
+      "schema_valid": 1,
+      "decision_correct": 1,
+      "missing_fields_exact": 1,
+      "evidence_exact": 1,
+      "task_success": 1
+    },
+    "new_tokens": 20,
+    "seconds": 1.1260440400000107
+  },
+  {
+    "id": "hr_learning_session-4-2",
+    "role": "HR",
+    "family": "hr_learning_session",
+    "prompt_sha256": "1651673fc9303eb993fc77cbde14de726a43c9b0c685601a3dabd43057217ed0",
+    "expected": {
+      "decision": "needs_review",
+      "missing": [
+        "attendance_list",
+        "facilitator"
+      ],
+      "evidence_ids": [
+        "E1"
+      ]
+    },
+    "completion": "{\"decision\":\"needs_review\",\"missing\":[\"facilitator\"],\"evidence_ids\":[\"E1\"]}",
+    "metrics": {
+      "schema_valid": 1,
+      "decision_correct": 1,
+      "missing_fields_exact": 0,
+      "evidence_exact": 1,
+      "task_success": 0
+    },
+    "new_tokens": 25,
+    "seconds": 1.299715348999996
+  },
+  {
+    "id": "sales_renewal_brief-4-2",
+    "role": "Sales",
+    "family": "sales_renewal_brief",
+    "prompt_sha256": "0989172fd507c7a5ce4b83d7d7c886e2adb990a6f916b94654bac0d58ccac23d",
+    "expected": {
+      "decision": "needs_review",
+      "missing": [
+        "account_contact",
+        "usage_summary"
+      ],
+      "evidence_ids": [
+        "E1"
+      ]
+    },
+    "completion": "{\"decision\":\"needs_review\",\"missing\":[\"usage_summary\"],\"evidence_ids\":[\"E1\"]}",
+    "metrics": {
+      "schema_valid": 1,
+      "decision_correct": 1,
+      "missing_fields_exact": 0,
+      "evidence_exact": 1,
+      "task_success": 0
+    },
+    "new_tokens": 25,
+    "seconds": 1.3143151479999915
+  },
+  {
+    "id": "science_analysis_review-4-2",
+    "role": "Science",
+    "family": "science_analysis_review",
+    "prompt_sha256": "c9123aa62cbb860f36ddacfaf612a9a021828ffc657b5153159340611ad4079f",
+    "expected": {
+      "decision": "needs_review",
+      "missing": [
+        "analysis_script",
+        "reviewer"
+      ],
+      "evidence_ids": [
+        "E1"
+      ]
+    },
+    "completion": "{\"decision\":\"needs_review\",\"missing\":[\"analysis_script\"],\"evidence_ids\":[\"E1\"]}",
+    "metrics": {
+      "schema_valid": 1,
+      "decision_correct": 1,
+      "missing_fields_exact": 0,
+      "evidence_exact": 1,
+      "task_success": 0
+    },
+    "new_tokens": 25,
+    "seconds": 1.2872844959999838
+  }
+]
