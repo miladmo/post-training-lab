@@ -85,10 +85,12 @@ stays exact. Training logs record the reward per component, the share of groups
 with zero reward variance (which produce no gradient) and the share of
 truncated completions.
 
-**Status: not yet run.** The code path is tested end to end on a tiny random
-model without downloads (`tools/make_tiny_snapshot.py`). No pretrained v3
-result exists yet; results will be added here only after the prespecified run.
-The commands are listed in the protocol.
+**Result (23 November 2026, [report](EXPERIMENT_V3_V4.md)).** SFT+GRPO solved
+7/24 validation tasks versus 6/24 for SFT, but this is not an improvement:
+GRPO shifted the policy to answering `ready` in 23 of 24 cases and decision
+accuracy fell from 19/24 to 13/24. Training diagnostics show the optimization
+worked (1 % zero-variance groups); the reward's balance across cases did not.
+The re-run SFT reproduced all 24 v2 completions exactly.
 
 ## Reward model and best-of-N (v4, prespecified)
 
@@ -102,7 +104,12 @@ and compares four selection rules on identical candidates: a single sample,
 majority voting, the reward model and a rule-based oracle. It also reports how
 well reward model scores agree with the rule reward.
 
-**Status: not yet run.** Tested end to end on the tiny offline model only.
+**Result (23 November 2026, [report](EXPERIMENT_V3_V4.md)).** The reward model
+ranked 17/24 held-out pairs correctly but scored malformed variants of correct
+answers higher than the answers themselves in almost all cases. In best-of-8 it
+selected invalid answers in 11/24 cases and solved 1/24, worse than a single
+sample (3/24). Majority voting solved 7/24 and the first complete context pair;
+the oracle shows correct candidates existed for 12/24 cases.
 
 Research concept: Milad Morad. Implementation developed with AI assistance.
 
