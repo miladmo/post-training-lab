@@ -1,0 +1,135 @@
+name: Pilot run v5
+
+# Prespecified v5 protocol (PROTOCOL_V5.md): SFT, then two GRPO arms in
+# parallel (beta 0 and beta 0.04, both on the merged SFT model), then a
+# comparison. Start from the Actions tab or by pushing the branch run/pilot-v5.
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [run/pilot-v5]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: pilot-v5
+  cancel-in-progress: false
+
+env:
+  MODEL: HuggingFaceTB/SmolLM2-135M-Instruct
+  REVISION: 12fd25f77366fa6b3b4b768ec3050bf629380bac
+  PYTHONUNBUFFERED: "1"
+  HF_HUB_DISABLE_TELEMETRY: "1"
+
+jobs:
+  sft:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install pinned dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt
+          python -m pip freeze > environment.txt
+      - name: Software tests
+        run: python -m unittest discover -s tests
+      - name: BASE evaluation
+        run: python run.py evaluate --model $MODEL --revision $REVISION --prompt-style two-shot --threads $(nproc) --split validation --output runs/v5-base-val24
+      - name: SFT training
+        run: python run.py train --model $MODEL --revision $REVISION --prompt-style two-shot --threads $(nproc) --method sft --steps 96 --output runs/v5-sft-96
+      - name: SFT evaluation
+        run: python run.py evaluate --model $MODEL --revision $REVISION --prompt-style two-shot --threads $(nproc) --split validation --adapter runs/v5-sft-96/adapter --output runs/v5-sft-val24
+      - run: cp environment.txt runs/environment.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: v5-sft
+          path: runs/
+          retention-days: 90
+
+  grpo:
+    needs: sft
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    strategy:
+      fail-fast: false
+      matrix:
+        arm:
+          - {name: b0, beta: "0"}
+          - {name: b004, beta: "0.04"}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install pinned dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt
+      - uses: actions/download-artifact@v4
+        with:
+          name: v5-sft
+          path: runs
+      - name: GRPO training (merged SFT, beta ${{ matrix.arm.beta }})
+        run: python run.py train --model $MODEL --revision $REVISION --prompt-style two-shot --threads $(nproc) --method grpo --init-adapter runs/v5-sft-96/adapter --init-mode merge --beta ${{ matrix.arm.beta }} --steps 96 --learning-rate 5e-5 --output runs/v5-grpo-${{ matrix.arm.name }}-96
+      - name: GRPO evaluation
+        run: python run.py evaluate --model $MODEL --revision $REVISION --prompt-style two-shot --threads $(nproc) --split validation --adapter runs/v5-grpo-${{ matrix.arm.name }}-96/adapter --output runs/v5-grpo-${{ matrix.arm.name }}-val24
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v5-grpo-${{ matrix.arm.name }}
+          path: |
+            runs/v5-grpo-${{ matrix.arm.name }}-96/
+            runs/v5-grpo-${{ matrix.arm.name }}-val24/
+          retention-days: 90
+
+  report:
+    needs: grpo
+    if: ${{ !cancelled() }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+      - name: Assemble runs
+        run: |
+          mkdir -p runs
+          cp -r artifacts/v5-sft/. runs/
+          for arm in b0 b004; do
+            if [ -d "artifacts/v5-grpo-$arm" ]; then cp -r "artifacts/v5-grpo-$arm/." runs/; fi
+          done
+          find runs -maxdepth 2 -name '*.json' | sort
+      - name: Compare (no model needed)
+        run: |
+          dirs="runs/v5-base-val24 runs/v5-sft-val24"
+          for arm in b0 b004; do [ -f "runs/v5-grpo-$arm-val24/evaluation.json" ] && dirs="$dirs runs/v5-grpo-$arm-val24"; done
+          python run.py compare $dirs | tee runs/v5-compare.txt
+      - name: Commit JSON results to results/pilot-v5
+        run: |
+          set -e
+          mkdir -p /tmp/out
+          (cd runs && find . -maxdepth 2 \( -name '*.json' -o -name '*.txt' \) -not -path '*/adapter/*' -not -path '*/checkpoints/*' -print0 | tar --null -cf /tmp/out/r.tar -T -)
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git fetch origin results/pilot-v5 || true
+          if git rev-parse --verify -q origin/results/pilot-v5 >/dev/null; then
+            git switch -c results-branch origin/results/pilot-v5
+          else
+            git switch --orphan results-branch
+          fi
+          rm -rf "run-${GITHUB_RUN_ID}"
+          mkdir -p "run-${GITHUB_RUN_ID}"
+          tar -xf /tmp/out/r.tar -C "run-${GITHUB_RUN_ID}"
+          printf 'Source commit: %s\nWorkflow run: %s/%s/actions/runs/%s\n' "$GITHUB_SHA" "$GITHUB_SERVER_URL" "$GITHUB_REPOSITORY" "$GITHUB_RUN_ID" > "run-${GITHUB_RUN_ID}/RUN.txt"
+          git add "run-${GITHUB_RUN_ID}"
+          git commit -m "Pilot v5 outputs from workflow run ${GITHUB_RUN_ID}"
+          git push origin HEAD:results/pilot-v5

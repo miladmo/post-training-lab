@@ -43,7 +43,7 @@ See the [v2 protocol](PROTOCOL_V2.md), [v2 report](EXPERIMENT_V2.md) and
 ## Run locally
 
 Use PowerShell in this directory with Python 3.11. Initial downloads require
-internet access; no paid inference service is used. The suite contains 46 tests;
+internet access; no paid inference service is used. The suite contains 49 tests;
 the two tiny-model smoke tests are skipped when torch, TRL and PEFT are not installed.
 
 ```powershell
@@ -110,6 +110,18 @@ answers higher than the answers themselves in almost all cases. In best-of-8 it
 selected invalid answers in 11/24 cases and solved 1/24, worse than a single
 sample (3/24). Majority voting solved 7/24 and the first complete context pair;
 the oracle shows correct candidates existed for 12/24 cases.
+
+## KL anchor against decision collapse (v5, prespecified)
+
+The [v5 protocol](PROTOCOL_V5.md) follows up on the v3 collapse. Both GRPO arms
+merge the SFT adapter into the base and train a fresh adapter, so that the KL
+reference is the SFT policy (`--init-mode merge`); they differ only in the KL
+coefficient (`--beta 0` versus `--beta 0.04`). Training logs the share of
+sampled `ready` answers and the KL value, and evaluations report all metrics
+split by the expected decision. Collapse is defined in advance as at least 20
+of 24 greedy answers with the same decision.
+
+**Status: running** in the workflow `pilot-v5.yml`; results will be added here.
 
 Research concept: Milad Morad. Implementation developed with AI assistance.
 
