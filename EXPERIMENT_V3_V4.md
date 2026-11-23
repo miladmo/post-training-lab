@@ -57,6 +57,17 @@ credit easily, whereas a correct `needs_review` answer must name the exact
 missing fields to earn the same. A follow-up would need to test this, for
 example with class-balanced reward weights.
 
+**Post-hoc check (added after the v4 run, not prespecified).** The 192 best-of-8
+candidates from the SFT policy allow a first look at this explanation. Within
+`needs_review` cases, sampled `needs_review` answers earned a mean graded
+reward of 0.76 and `ready` answers 0.41; within `ready` cases, `ready` answers
+earned 0.93 and `needs_review` answers 0.48. Because GRPO compares answers to
+the same prompt, a correct decision is clearly favoured in both classes. The
+asymmetry in absolute reward levels therefore does not by itself explain the
+shift towards `ready`. These are validation prompts, not training prompts, so
+this weakens rather than rejects the explanation. [v5](PROTOCOL_V5.md) tests a
+different one: unanchored drift away from the SFT policy.
+
 ## v4 results: can a learned reward model replace the rule reward?
 
 **Reliability checks** (24 validation cases):
